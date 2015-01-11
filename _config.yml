@@ -1,10 +1,10 @@
 # Site settings
 title: Sass Guidelines
 description: "an opinionated styleguide for writing sane, maintainable and scalable Sass"
-baseurl: ""
+baseurl: "/sass-guidelines"
 url: "http://sass-guidelin.es"
-twitter_username: HugoGiraudel
-github_username:  HugoGiraudel
+twitter_username: taupecat
+github_username:  RP3Agency
 
 # Build settings
 markdown: kramdown
