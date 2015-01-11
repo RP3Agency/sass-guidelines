@@ -19,17 +19,17 @@ These guidelines are a fork of the [Sass Guidelines by Hugo Giraudel](http://sas
 * [Syntax & Formatting](#syntax--formatting)
   * [Strings](#strings)
   * [Numbers](#numbers)
-    * [Zeros](#zeros)
-    * [Units](#units)
-    * [Calculations](#calculations)
-    * [Magic numbers](#magic-numbers)
+	* [Zeros](#zeros)
+	* [Units](#units)
+	* [Calculations](#calculations)
+	* [Magic numbers](#magic-numbers)
   * [Colors](#colors)
-    * [Color formats](#color-formats)
-    * [Colors and variables](#colors-and-variables)
-    * [Lightening and Darkening Colors](#lightening-and-darkening-colors)
+	* [Color formats](#color-formats)
+	* [Colors and variables](#colors-and-variables)
+	* [Lightening and Darkening Colors](#lightening-and-darkening-colors)
   * [Lists](#lists)
   * [Maps](#maps)
-    * [Debugging A Sass Map](#debugging-a-sass-map)
+	* [Debugging A Sass Map](#debugging-a-sass-map)
   * [CSS Ruleset](#css-ruleset)
   * [Declaration Sorting](#declaration-sorting)
   * [Selector Nesting](#selector-nesting)
@@ -42,14 +42,14 @@ These guidelines are a fork of the [Sass Guidelines by Hugo Giraudel](http://sas
 * [Architecture](#architecture)
   * [Components](#components)
   * [The 7-1 pattern](#the-7-1-pattern)
-    * [Base Folder](#base-folder)
-    * [Components Folder](#components-folder)
-    * [Layout Folder](#layout-folder)
-    * [Pages Folder](#pages-folder)
-    * [Themes Folder](#themes-folder)
-    * [Utils Folder](#utils-folder)
-    * [Vendors Folder](#vendors-folder)
-    * [Main file](#main-file)
+	* [Base Folder](#base-folder)
+	* [Components Folder](#components-folder)
+	* [Layout Folder](#layout-folder)
+	* [Pages Folder](#pages-folder)
+	* [Themes Folder](#themes-folder)
+	* [Utils Folder](#utils-folder)
+	* [Vendors Folder](#vendors-folder)
+	* [Main file](#main-file)
   * [Shame file](#shame-file)
 * [Responsive Web Design and Breakpoints](#responsive-web-design-and-breakpoints)
   * [Naming Breakpoints](#naming-breakpoints)
@@ -144,7 +144,7 @@ Since then, Sass (the preprocessor) has been providing two different syntaxes: S
 
 Sass's whitespace-sensitive syntax relies on indentation to get rid of braces, semi-colons and other punctuation symbols, leading to a leaner and shorter syntax. Meanwhile, SCSS is easier to learn since it's mostly some tiny extra bits on top of CSS.
 
-At RP3 Agency, we use SCSS because it is closer to CSS and friendlier to most developers.
+At RP3 Agency, we use SCSS because it is closer to CSS and friendlier to most developers. It also allows us to convert legacy CSS projects to Sass simply by changing the extension from `.css` to `.scss`.
 
 
 
@@ -178,11 +178,11 @@ Needless to say, the more developers involved on a project, the more code guidel
 <blockquote>
   <p>A coding styleguide (note, not a visual styleguide) is a valuable tool for teams who:</p>
   <ul>
-    <li>build and maintain products for a reasonable length of time;</li>
-    <li>have developers of differing abilities and specialties;</li>
-    <li>have a number of different developers working on a product at any given time;</li>
-    <li>on-board new staff regularly;</li>
-    <li>have a number of codebases that developers dip in and out of.</li>
+	<li>build and maintain products for a reasonable length of time;</li>
+	<li>have developers of differing abilities and specialties;</li>
+	<li>have a number of different developers working on a product at any given time;</li>
+	<li>on-board new staff regularly;</li>
+	<li>have a number of codebases that developers dip in and out of.</li>
   </ul>
 </blockquote>
 
@@ -236,32 +236,29 @@ Also, and to quote [Harry Roberts](https://csswizardry.com) once again, **pragma
 
 # Syntax & formatting
 
-If you ask me, the very first thing a styleguide should do is describe the usual guidelines to write code.
-
 When several developers are involved in writing CSS on the same project(s), it is only a matter of time before one of them starts doing things their own way. Code guidelines are not only meant to prevent this, but also help when reading and updating of code, by making it look consistent.
 
-Roughly, we want (shamelessly inspired by [CSS Guidelines](http://cssguidelin.es/#syntax-and-formatting)):
+Roughly, we want:
 
-* two (2) spaces indents, no tabs;
-* ideally, 80-characters wide lines;
+* Tabbed indents, with tabs equal to four spaces;
 * properly written multi-line CSS rules;
-* meaningful use of whitespaces.
+* meaningful use of whitespace.
 
 <div class="code-block">
   <div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 .foo {
-  display: block;
-  overflow: hidden;
-  padding: 0 1em;
+	display: block;
+	overflow: hidden;
+	padding: 0 1em;
 }
 
 // Nope
 .foo {
-    display: block; overflow: hidden;
+  display: block; overflow: hidden;
 
-    padding: 0 1em;
+  padding: 0 1em;
 }
 {% endhighlight %}
   </div>
@@ -958,17 +955,17 @@ If you ever find yourself lost, wondering what kind of crazy magic is happening 
 {% highlight scss %}
 @mixin debug-map($map) {
   @at-root {
-    @debug-map {
-      __toString__: inspect($map);
-      __length__: length($map);
-      __depth__: if(function-exists('map-depth'), map-depth($map), null);
-      __keys__: map-keys($map);
-      __properties__ {
-        @each $key, $value in $map {
-          #{'(' + type-of($value) + ') ' + $key}: inspect($value);
-        }
-      }
-    }
+	@debug-map {
+	  __toString__: inspect($map);
+	  __length__: length($map);
+	  __depth__: if(function-exists('map-depth'), map-depth($map), null);
+	  __keys__: map-keys($map);
+	  __properties__ {
+		@each $key, $value in $map {
+		  #{'(' + type-of($value) + ') ' + $key}: inspect($value);
+		}
+	  }
+	}
   }
 }
 {% endhighlight %}
@@ -977,14 +974,14 @@ If you ever find yourself lost, wondering what kind of crazy magic is happening 
 {% highlight sass %}
 =debug-map($map)
   @at-root
-    @debug-map
-      __toString__: inspect($map)
-      __length__: length($map)
-      __depth__: if(function-exists('map-depth'), map-depth($map), null)
-      __keys__: map-keys($map)
-      __properties__
-        @each $key, $value in $map
-          #{'(' + type-of($value) + ') ' + $key}: inspect($value)
+	@debug-map
+	  __toString__: inspect($map)
+	  __length__: length($map)
+	  __depth__: if(function-exists('map-depth'), map-depth($map), null)
+	  __keys__: map-keys($map)
+	  __properties__
+		@each $key, $value in $map
+		  #{'(' + type-of($value) + ') ' + $key}: inspect($value)
 {% endhighlight %}
   </div>
 </div>
@@ -1001,9 +998,9 @@ If you are interested in knowing the depth of the map, add the following functio
   $level: 1;
 
   @each $key, $value in $map {
-    @if type-of($value) == 'map' {
-      $level: max(map-depth($value) + 1, $level);
-    }
+	@if type-of($value) == 'map' {
+	  $level: max(map-depth($value) + 1, $level);
+	}
   }
 
   @return $level;
@@ -1019,8 +1016,8 @@ If you are interested in knowing the depth of the map, add the following functio
   $level: 1
 
   @each $key, $value in $map
-    @if type-of($value) == 'map'
-      $level: max(map-depth($value) + 1, $level)
+	@if type-of($value) == 'map'
+	  $level: max(map-depth($value) + 1, $level)
 
   @return $level;
 {% endhighlight %}
@@ -1073,9 +1070,9 @@ Illustration:
 // Nope
 .foo,
 .foo-bar, .baz {
-    display: block;
-    overflow: hidden;
-    margin: 0 auto }
+	display: block;
+	overflow: hidden;
+	margin: 0 auto }
 {% endhighlight %}
   </div>
   <div class="code-block__wrapper" data-syntax="sass">
@@ -1090,9 +1087,9 @@ Illustration:
 // Nope
 .foo,
 .foo-bar, .baz
-    display: block
-    overflow: hidden
-    margin: 0 auto
+	display: block
+	overflow: hidden
+	margin: 0 auto
 {% endhighlight %}
   </div>
 </div>
@@ -1121,11 +1118,11 @@ Illustration:
   margin: 0 auto;
 
   &:hover {
-    color: red;
+	color: red;
   }
 
   @include respond-to('small') {
-    overflow: visible;
+	overflow: visible;
   }
 }
 {% endhighlight %}
@@ -1143,10 +1140,10 @@ Illustration:
   margin: 0 auto
 
   &:hover
-    color: red
+	color: red
 
   +respond-to('small')
-    overflow: visible
+	overflow: visible
 {% endhighlight %}
   </div>
 </div>
@@ -1315,9 +1312,9 @@ One particular feature Sass provides that is being overly misused by many develo
 {% highlight scss %}
 .foo {
   .bar {
-    &:hover {
-      color: red;
-    }
+	&:hover {
+	  color: red;
+	}
   }
 }
 {% endhighlight %}
@@ -1326,8 +1323,8 @@ One particular feature Sass provides that is being overly misused by many develo
 {% highlight sass %}
 .foo
   .bar
-    &:hover
-      color: red
+	&:hover
+	  color: red
 {% endhighlight %}
   </div>
 </div>
@@ -1347,7 +1344,7 @@ Along the same lines, since Sass 3.3 it is possible to use the current selector 
 {% highlight scss %}
 .foo {
   &-bar {
-    color: red;
+	color: red;
   }
 }
 {% endhighlight %}
@@ -1356,7 +1353,7 @@ Along the same lines, since Sass 3.3 it is possible to use the current selector 
 {% highlight sass %}
 .foo
   &-bar
-    color: red
+	color: red
 {% endhighlight %}
   </div>
 </div>
@@ -1398,11 +1395,11 @@ To prevent such a situation, we **avoid selector nesting except for pseudo-class
   color: red;
 
   &:hover {
-    color: green;
+	color: green;
   }
 
   &::before {
-    content: 'pseudo-element';
+	content: 'pseudo-element';
   }
 }
 {% endhighlight %}
@@ -1413,10 +1410,10 @@ To prevent such a situation, we **avoid selector nesting except for pseudo-class
   color: red
 
   &:hover
-    color: green
+	color: green
 
   &::before
-    content: 'pseudo-element'
+	content: 'pseudo-element'
 {% endhighlight %}
   </div>
 </div>
@@ -2248,7 +2245,7 @@ There is an interesting concept that has been made popular by [Harry Roberts](ht
  * have time to refactor the header stuff.
  */
 .site-nav a {
-    color: #BADA55 !important;
+	color: #BADA55 !important;
 }
 {% endhighlight %}
   </div>
@@ -2262,7 +2259,7 @@ There is an interesting concept that has been made popular by [Harry Roberts](ht
  * have time to refactor the header stuff.
  */
 .site-nav a
-    color: #BADA55 !important
+	color: #BADA55 !important
 {% endhighlight %}
   </div>
 </div>
@@ -2372,14 +2369,14 @@ Once you have named your breakpoints the way you want, you need a way to use the
 /// @requires $breakpoints
 @mixin respond-to($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
-    @media #{inspect(map-get($breakpoints, $breakpoint))} {
-      @content;
-    }
+	@media #{inspect(map-get($breakpoints, $breakpoint))} {
+	  @content;
+	}
   }
 
   @else {
-    @error 'No value found for `#{$breakpoint}`. '
-         + 'Please make sure it is defined in `$breakpoints` map.';
+	@error 'No value found for `#{$breakpoint}`. '
+		 + 'Please make sure it is defined in `$breakpoints` map.';
   }
 }
 {% endhighlight %}
@@ -2392,12 +2389,12 @@ Once you have named your breakpoints the way you want, you need a way to use the
 /// @requires $breakpoints
 =respond-to($breakpoint)
   @if map-has-key($breakpoints, $breakpoint)
-    @media #{inspect(map-get($breakpoints, $breakpoint))}
-      @content
+	@media #{inspect(map-get($breakpoints, $breakpoint))}
+	  @content
 
   @else
-    @error 'No value found for `#{$breakpoint}`. '
-         + 'Please make sure it is defined in `$breakpoints` map.'
+	@error 'No value found for `#{$breakpoint}`. '
+		 + 'Please make sure it is defined in `$breakpoints` map.'
 {% endhighlight %}
   </div>
 </div>
@@ -2425,7 +2422,7 @@ Not so long ago, there has been a quite hot debate about where should be written
   color: red;
 
   @include respond-to('small') {
-    color: blue;
+	color: blue;
   }
 }
 {% endhighlight %}
@@ -2436,7 +2433,7 @@ Not so long ago, there has been a quite hot debate about where should be written
   color: red
 
   +respond-to('small')
-    color: blue
+	color: blue
 {% endhighlight %}
   </div>
 </div>
@@ -2450,7 +2447,7 @@ Leading to the following CSS output:
 
 @media (max-width: 800px) {
   .foo {
-    color: blue;
+	color: blue;
   }
 }
 {% endhighlight %}
@@ -2748,8 +2745,8 @@ If you are going to use extend, let me also remind you that it does not play wel
 
 @media print {
   .bar {
-    // This doesn't work. Worse: it crashes.
-    @extend .foo;
+	// This doesn't work. Worse: it crashes.
+	@extend .foo;
   }
 }
 {% endhighlight %}
@@ -2761,8 +2758,8 @@ If you are going to use extend, let me also remind you that it does not play wel
 
 @media print
   .bar
-    // This doesn't work. Worse: it crashes.
-    @extend .foo
+	// This doesn't work. Worse: it crashes.
+	@extend .foo
 {% endhighlight %}
   </div>
 </div>
@@ -2821,9 +2818,9 @@ That being said, mixins are extremely useful and you should be using some. The r
 /// @link http://nicolasgallagher.com/micro-clearfix-hack/ Micro Clearfix
 @mixin clearfix {
   &::after {
-    content: '';
-    display: table;
-    clear: both;
+	content: '';
+	display: table;
+	clear: both;
   }
 }
 {% endhighlight %}
@@ -2835,9 +2832,9 @@ That being said, mixins are extremely useful and you should be using some. The r
 /// @link http://nicolasgallagher.com/micro-clearfix-hack/ Micro Clearfix
 @mixin clearfix
   &::after
-    content: ''
-    display: table
-    clear: both
+	content: ''
+	display: table
+	clear: both
 {% endhighlight %}
   </div>
 </div>
@@ -3013,7 +3010,7 @@ Do it the clever way.
 /// @param {List} $prefixes - List of prefixes to output
 @mixin prefix($property, $value, $prefixes: ()) {
   @each $prefix in $prefixes {
-    -#{$prefix}-#{$property}: $value;
+	-#{$prefix}-#{$property}: $value;
   }
 
   #{$property}: $value;
@@ -3030,7 +3027,7 @@ Do it the clever way.
 /// @param {List} $prefixes - List of prefixes to output
 =prefix($property, $value, $prefixes: ())
   @each $prefix in $prefixes
-    -#{$prefix}-#{$property}: $value
+	-#{$prefix}-#{$property}: $value
 
   #{$property}: $value
 {% endhighlight %}
@@ -3157,7 +3154,7 @@ When using conditional statements within a function to return a different result
 // Yep
 @function dummy($condition) {
   @if $condition {
-    @return true;
+	@return true;
   }
 
   @return false;
@@ -3166,9 +3163,9 @@ When using conditional statements within a function to return a different result
 // Nope
 @function dummy($condition) {
   @if $condition {
-    @return true;
+	@return true;
   } @else {
-    @return false;
+	@return false;
   }
 }
 {% endhighlight %}
@@ -3178,16 +3175,16 @@ When using conditional statements within a function to return a different result
 // Yep
 @function dummy($condition)
   @if $condition
-    @return true
+	@return true
 
   @return false;
 
 // Nope
 @function dummy($condition)
   @if $condition
-    @return true
+	@return true
   @else
-    @return false
+	@return false
 {% endhighlight %}
   </div>
 </div>
@@ -3222,7 +3219,7 @@ The `@each` loop is definitely the most-used out of the three loops provided by 
 {% highlight scss %}
 @each $theme in $themes {
   .section-#{$theme} {
-    background-color: map-get($colors, $theme);
+	background-color: map-get($colors, $theme);
   }
 }
 {% endhighlight %}
@@ -3231,7 +3228,7 @@ The `@each` loop is definitely the most-used out of the three loops provided by 
 {% highlight sass %}
 @each $theme in $themes
   .section-#{$theme}
-    background-color: map-get($colors, $theme)
+	background-color: map-get($colors, $theme)
 {% endhighlight %}
   </div>
 </div>
@@ -3243,7 +3240,7 @@ When iterating on a map, always use `$key` and `$value` as variable names to enf
 {% highlight scss %}
 @each $key, $value in $map {
   .section-#{$key} {
-    background-color: $value;
+	background-color: $value;
   }
 }
 {% endhighlight %}
@@ -3252,7 +3249,7 @@ When iterating on a map, always use `$key` and `$value` as variable names to enf
 {% highlight sass %}
 @each $key, $value in $map
   .section-#{$key}
-    background-color: $value
+	background-color: $value
 {% endhighlight %}
   </div>
 </div>
@@ -3271,7 +3268,7 @@ The `@for` loop might be useful when combined with CSS' `:nth-*` pseudo-classes.
 {% highlight scss %}
 @for $i from 1 through 10 {
   .foo:nth-of-type(#{$i}) {
-    border-color: hsl($i * 36, 50%, 50%);
+	border-color: hsl($i * 36, 50%, 50%);
   }
 }
 {% endhighlight %}
@@ -3280,7 +3277,7 @@ The `@for` loop might be useful when combined with CSS' `:nth-*` pseudo-classes.
 {% highlight sass %}
 @for $i from 1 through 10
   .foo:nth-of-type(#{$i})
-    border-color: hsl($i * 36, 50%, 50%)
+	border-color: hsl($i * 36, 50%, 50%)
 {% endhighlight %}
   </div>
 </div>
@@ -3340,10 +3337,10 @@ Take this function from [Sass-MQ](https://github.com/sass-mq/sass-mq) attempting
 {% highlight scss %}
 @function mq-px2em($px, $base-font-size: $mq-base-font-size) {
   @if unitless($px) {
-    @warn 'Assuming #{$px} to be in pixels, attempting to convert it into pixels.';
-    @return mq-px2em($px + 0px);
+	@warn 'Assuming #{$px} to be in pixels, attempting to convert it into pixels.';
+	@return mq-px2em($px + 0px);
   } @else if unit($px) == em {
-    @return $px;
+	@return $px;
   }
 
   @return ($px / $base-font-size) * 1em;
@@ -3354,10 +3351,10 @@ Take this function from [Sass-MQ](https://github.com/sass-mq/sass-mq) attempting
 {% highlight sass %}
 @function mq-px2em($px, $base-font-size: $mq-base-font-size)
   @if unitless($px)
-    @warn 'Assuming #{$px} to be in pixels, attempting to convert it into pixels.'
-    @return mq-px2em($px + 0px)
+	@warn 'Assuming #{$px} to be in pixels, attempting to convert it into pixels.'
+	@return mq-px2em($px + 0px)
   @else if unit($px) == em
-    @return $px
+	@return $px
 
   @return ($px / $base-font-size) * 1em
 {% endhighlight %}
@@ -3399,8 +3396,8 @@ $z-indexes: (
 /// @require $z-indexes
 @function z($layer) {
   @if not map-has-key($z-indexes, $layer) {
-    @error 'There is no layer named `#{$layer}` in $z-indexes. '
-         + 'Layer should be one of #{map-keys($z-indexes)}.';
+	@error 'There is no layer named `#{$layer}` in $z-indexes. '
+		 + 'Layer should be one of #{map-keys($z-indexes)}.';
   }
 
   @return map-get($z-indexes, $layer);
@@ -3423,8 +3420,8 @@ $z-indexes: ('modal': 5000, 'dropdown': 4000, 'default': 1, 'below': -1,)
 /// @require $z-indexes
 @function z($layer)
   @if not map-has-key($z-indexes, $layer)
-    @error 'There is no layer named `#{$layer}` in $z-indexes. '
-         + 'Layer should be one of #{map-keys($z-indexes)}.'
+	@error 'There is no layer named `#{$layer}` in $z-indexes. '
+		 + 'Layer should be one of #{map-keys($z-indexes)}.'
 
   @return map-get($z-indexes, $layer)
 {% endhighlight %}
@@ -3527,166 +3524,166 @@ Fortunately, SCSS-lint recommendations are very similar to those described in th
 linters:
 
   BangFormat:
-    enabled: true
-    space_before_bang: true
-    space_after_bang: false
+	enabled: true
+	space_before_bang: true
+	space_after_bang: false
 
   BorderZero:
-    enabled: true
+	enabled: true
 
   ColorKeyword:
-    enabled: false
+	enabled: false
 
   Comment:
-    enabled: false
+	enabled: false
 
   DebugStatement:
-    enabled: true
+	enabled: true
 
   DeclarationOrder:
-    enabled: true
+	enabled: true
 
   DuplicateProperty:
-    enabled: false
+	enabled: false
 
   ElsePlacement:
-    enabled: true
-    style: same_line
+	enabled: true
+	style: same_line
 
   EmptyLineBetweenBlocks:
-    enabled: true
-    ignore_single_line_blocks: false
+	enabled: true
+	ignore_single_line_blocks: false
 
   EmptyRule:
-    enabled: true
+	enabled: true
 
   FinalNewline:
-    enabled: true
-    present: true
+	enabled: true
+	present: true
 
   HexLength:
-    enabled: true
-    style: short
+	enabled: true
+	style: short
 
   HexNotation:
-    enabled: true
-    style: lowercase
+	enabled: true
+	style: lowercase
 
   HexValidation:
-    enabled: true
+	enabled: true
 
   IdSelector:
-    enabled: true
+	enabled: true
 
   ImportPath:
-    enabled: true
-    leading_underscore: false
-    filename_extension: false
+	enabled: true
+	leading_underscore: false
+	filename_extension: false
 
   Indentation:
-    enabled: true
-    character: space
-    width: 2
+	enabled: true
+	character: space
+	width: 2
 
   LeadingZero:
-    enabled: true
-    style: exclude_zero
+	enabled: true
+	style: exclude_zero
 
   MergeableSelector:
-    enabled: false
+	enabled: false
 
   NameFormat:
-    enabled: true
-    convention: hyphenated_lowercase
+	enabled: true
+	convention: hyphenated_lowercase
 
   NestingDepth:
-    enabled: true
-    max_depth: 3
+	enabled: true
+	max_depth: 3
 
   PlaceholderInExtend:
-    enabled: true
+	enabled: true
 
   PropertySortOrder:
-    enabled: false
+	enabled: false
 
   PropertySpelling:
-    enabled: true
-    extra_properties: []
+	enabled: true
+	extra_properties: []
 
   QualifyingElement:
-    enabled: true
-    allow_element_with_attribute: false
-    allow_element_with_class: false
-    allow_element_with_id: false
+	enabled: true
+	allow_element_with_attribute: false
+	allow_element_with_class: false
+	allow_element_with_id: false
 
   SelectorDepth:
-    enabled: true
-    max_depth: 3
+	enabled: true
+	max_depth: 3
 
   SelectorFormat:
-    enabled: true
-    convention: hyphenated_lowercase
-    class_convention: '^(?:u|is|has)\-[a-z][a-zA-Z0-9]*$|^(?!u|is|has)[a-zA-Z][a-zA-Z0-9]*(?:\-[a-z][a-zA-Z0-9]*)?(?:\-\-[a-z][a-zA-Z0-9]*)?$'
+	enabled: true
+	convention: hyphenated_lowercase
+	class_convention: '^(?:u|is|has)\-[a-z][a-zA-Z0-9]*$|^(?!u|is|has)[a-zA-Z][a-zA-Z0-9]*(?:\-[a-z][a-zA-Z0-9]*)?(?:\-\-[a-z][a-zA-Z0-9]*)?$'
 
   Shorthand:
-    enabled: true
+	enabled: true
 
   SingleLinePerProperty:
-    enabled: true
-    allow_single_line_rule_sets: false
+	enabled: true
+	allow_single_line_rule_sets: false
 
   SingleLinePerSelector:
-    enabled: true
+	enabled: true
 
   SpaceAfterComma:
-    enabled: true
+	enabled: true
 
   SpaceAfterPropertyColon:
-    enabled: true
-    style: one_space
+	enabled: true
+	style: one_space
 
   SpaceAfterPropertyName:
-    enabled: true
+	enabled: true
 
   SpaceBeforeBrace:
-    enabled: true
-    style: space
-    allow_single_line_padding: true
+	enabled: true
+	style: space
+	allow_single_line_padding: true
 
   SpaceBetweenParens:
-    enabled: true
-    spaces: 0
+	enabled: true
+	spaces: 0
 
   StringQuotes:
-    enabled: true
-    style: single_quotes
+	enabled: true
+	style: single_quotes
 
   TrailingSemicolon:
-    enabled: true
+	enabled: true
 
   TrailingZero:
-    enabled: true
+	enabled: true
 
   UnnecessaryMantissa:
-    enabled: true
+	enabled: true
 
   UnnecessaryParentReference:
-    enabled: true
+	enabled: true
 
   UrlFormat:
-    enabled: false
+	enabled: false
 
   UrlQuotes:
-    enabled: true
+	enabled: true
 
   VendorPrefixes:
-    enabled: true
-    identifier_list: base
-    include: []
-    exclude: []
+	enabled: true
+	identifier_list: base
+	include: []
+	exclude: []
 
   ZeroUnit:
-    enabled: true
+	enabled: true
 {% endhighlight %}
 
 <div class="note">
