@@ -245,7 +245,6 @@ Roughly, we want:
 * meaningful use of whitespace.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 .foo {
@@ -261,17 +260,6 @@ Roughly, we want:
   padding: 0 1em;
 }
 {% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Since Sass indented-syntax forces those coding standards
-// There is no wrong way of proceeding
-.foo
-  display: block
-  overflow: hidden
-  padding: 0 1em
-{% endhighlight %}
-  </div>
 </div>
 
 We will not tackle the question of file organization in this section. It is the object of [another section](#architecture).
