@@ -245,6 +245,7 @@ Roughly, we want:
 * meaningful use of whitespace.
 
 <div class="code-block">
+  <div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 .foo {
@@ -260,6 +261,7 @@ Roughly, we want:
   padding: 0 1em;
 }
 {% endhighlight %}
+  </div>
 </div>
 
 We will not tackle the question of file organization in this section. It is the object of [another section](#architecture).
@@ -296,18 +298,6 @@ $font-stack: 'Helvetica Neue Light', 'Helvetica', 'Arial', sans-serif;
 $font-stack: Helvetica Neue Light, Helvetica, Arial, sans-serif;
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-$font-stack: "Helvetica Neue Light", "Helvetica", "Arial", sans-serif
-
-// Nope
-$font-stack: 'Helvetica Neue Light', 'Helvetica', 'Arial', sans-serif
-
-// Nope
-$font-stack: Helvetica Neue Light, Helvetica, Arial, sans-serif
-{% endhighlight %}
-  </div>
 </div>
 
 <div class="note">
@@ -328,17 +318,6 @@ URLs should be quoted as well, for the same reasons as above:
 .foo {
   background-image: url(/images/kittens.jpg);
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-.foo
-  background-image: url('/images/kittens.jpg')
-
-// Nope
-.foo
-  background-image: url(/images/kittens.jpg)
 {% endhighlight %}
   </div>
 </div>
@@ -381,19 +360,6 @@ Numbers should display leading zeros before a decimal value less than one. Never
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-.foo
-  padding: 2em
-  opacity: 0.5
-
-// Nope
-.foo
-  padding: 2.0em
-  opacity: .5
-{% endhighlight %}
-  </div>
 </div>
 
 
@@ -410,15 +376,6 @@ $length: 0;
 
 // Nope
 $length: 0em;
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-$length: 0
-
-// Nope
-$length: 0em
 {% endhighlight %}
   </div>
 </div>
@@ -439,17 +396,6 @@ $length: $value * 1px;
 $length: $value + px;
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-$value: 42
-
-// Yep
-$length: $value * 1px
-
-// Nope
-$length: $value + px
-{% endhighlight %}
-  </div>
 </div>
 
 Note that adding *0 member of that unit* also works, but I would rather recommend the aforementioned method since adding *0 unit* can somehow be a bit confusing. Indeed, when trying to convert a number to another compatible unit, adding 0 will not do the trick.
@@ -464,18 +410,6 @@ $value: 1in + 0px;
 // -> 1in
 
 $value: 0px + 1in;
-// -> 96px
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-$value: 42 + 0px
-// -> 42px
-
-$value: 1in + 0px
-// -> 1in
-
-$value: 0px + 1in
 // -> 96px
 {% endhighlight %}
   </div>
@@ -495,17 +429,6 @@ $value: $length / 1px;
 
 // Nope
 $value: str-slice($length + unquote(''), 1, 2);
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-$length: 42px
-
-// Yep
-$value: $length / 1px
-
-// Nope
-$value: str-slice($length + unquote(''), 1, 2)
 {% endhighlight %}
   </div>
 </div>
@@ -532,17 +455,6 @@ Appending a unit as a string to a number results in a string, preventing any add
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-.foo
-  width: (100% / 3)
-
-// Nope
-.foo
-  width: 100% / 3
-{% endhighlight %}
-  </div>
 </div>
 
 
@@ -563,16 +475,6 @@ Needless to say **magic numbers are a plague and should be avoided at all costs*
 .foo {
   top: 0.327em; /* 1 */
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/**
- * 1. Magic number. This value is the lowest I could find to align the top of
- * `.foo` with its parent. Ideally, we should fix it properly.
- */
-.foo
-  top: 0.327em /* 1 */
 {% endhighlight %}
   </div>
 </div>
@@ -624,17 +526,6 @@ Beyond that, RGB is the next most commonly used means of expressing colors. HSL,
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-.foo
-  color: #f00
-
-// Nope
-.foo
-  color: red
-{% endhighlight %}
-  </div>
 </div>
 
 When using HSL or RGB notation, always add a single space after commas (`,`) and no space between parentheses (`(`, `)`) and content.
@@ -655,19 +546,6 @@ When using HSL or RGB notation, always add a single space after commas (`,`) and
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-.foo
-  color: rgba(0, 0, 0, 0.1)
-  background: hsl(300, 100%, 100%)
-
-// Nope
-.foo
-  color: rgba(0,0,0,0.1)
-  background: hsl( 300, 100%, 100% )
-{% endhighlight %}
-  </div>
 </div>
 
 
@@ -682,11 +560,6 @@ When using a color more than once, store it in a variable with a meaningful name
 $sass-pink: #c69;
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-$sass-pink: #c69
-{% endhighlight %}
-  </div>
 </div>
 
 At this point, you are free to use this variable wherever you want. However, if your usage is strongly tied to a theme, I would advise against using the variable as is. Instead, store it in another variable with a name explaining how it should be used.
@@ -695,11 +568,6 @@ At this point, you are free to use this variable wherever you want. However, if 
   <div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 $main-theme-color: $sass-pink;
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-$main-theme-color: $sass-pink
 {% endhighlight %}
   </div>
 </div>
@@ -745,25 +613,6 @@ If you don't want to write the `mix` function every time, you can create two eas
 @function shade($color, $percentage) {
   @return mix($color, black, $percentage);
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/// Slightly lighten a color
-/// @access public
-/// @param {Color} $color - color to tint
-/// @param {Number} $percentage - percentage of `$color` in returned color
-/// @return {Color}
-@function tint($color, $percentage)
-  @return mix($color, white, $percentage)
-
-/// Slightly darken a color
-/// @access public
-/// @param {Color} $color - color to shade
-/// @param {Number} $percentage - percentage of `$color` in returned color
-/// @return {Color}
-@function shade($color, $percentage)
-  @return mix($color, black, $percentage)
 {% endhighlight %}
   </div>
 </div>
@@ -821,27 +670,6 @@ $font-stack: ('Helvetica', 'Arial', sans-serif);
 $font-stack: ('Helvetica', 'Arial', sans-serif,);
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-$font-stack: 'Helvetica', 'Arial', sans-serif
-
-// Nope (since it is not supported)
-$font-stack:
-  'Helvetica',
-  'Arial',
-  sans-serif
-
-// Nope
-$font-stack: 'Helvetica' 'Arial' sans-serif
-
-// Nope
-$font-stack: ('Helvetica', 'Arial', sans-serif)
-
-// Nope
-$font-stack: ('Helvetica', 'Arial', sans-serif,)
-{% endhighlight %}
-  </div>
 </div>
 
 When adding new items to a list, always use the provided API. Do not attempt to add new items manually.
@@ -856,17 +684,6 @@ $shadows: append($shadows, $shadow, comma);
 
 // Nope
 $shadows: $shadows, $shadow;
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-$shadows: 0 42px 13.37px hotpink
-
-// Yep
-$shadows: append($shadows, $shadow, comma)
-
-// Nope
-$shadows: $shadows, $shadow
 {% endhighlight %}
   </div>
 </div>
@@ -913,25 +730,6 @@ $breakpoints: (
 $breakpoints: ( small: 767px, medium: 992px, large: 1200px );
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-$breakpoints: ('small': 767px, 'medium': 992px, 'large': 1200px,)
-
-// Nope
-$breakpoints: ( 'small': 767px, 'medium': 992px, 'large': 1200px )
-
-// Nope
-$breakpoints: (small: 767px, medium: 992px, large: 1200px,)
-
-// Nope (since it is not supported)
-$breakpoints: (
-  'small': 767px,
-  'medium': 992px,
-  'large': 1200px,
-)
-{% endhighlight %}
-  </div>
 </div>
 
 
@@ -960,20 +758,6 @@ If you ever find yourself lost, wondering what kind of crazy magic is happening 
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-=debug-map($map)
-  @at-root
-	@debug-map
-	  __toString__: inspect($map)
-	  __length__: length($map)
-	  __depth__: if(function-exists('map-depth'), map-depth($map), null)
-	  __keys__: map-keys($map)
-	  __properties__
-		@each $key, $value in $map
-		  #{'(' + type-of($value) + ') ' + $key}: inspect($value)
-{% endhighlight %}
-  </div>
 </div>
 
 If you are interested in knowing the depth of the map, add the following function as well. The mixin will display it automatically.
@@ -995,21 +779,6 @@ If you are interested in knowing the depth of the map, add the following functio
 
   @return $level;
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/// Compute the maximum depth of a map
-/// @param {Map} $map
-/// @return {Number} max depth of `$map`
-@function map-depth($map)
-  $level: 1
-
-  @each $key, $value in $map
-	@if type-of($value) == 'map'
-	  $level: max(map-depth($value) + 1, $level)
-
-  @return $level;
 {% endhighlight %}
   </div>
 </div>
@@ -1065,23 +834,6 @@ Illustration:
 	margin: 0 auto }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-.foo, .foo-bar,
-.baz
-  display: block
-  overflow: hidden
-  margin: 0 auto
-
-// Nope
-.foo,
-.foo-bar, .baz
-	display: block
-	overflow: hidden
-	margin: 0 auto
-{% endhighlight %}
-  </div>
 </div>
 
 Adding to those CSS-related guidelines, we want to pay attention to:
@@ -1115,25 +867,6 @@ Illustration:
 	overflow: visible;
   }
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-.foo, .foo-bar,
-.baz
-  $length: 42em
-
-  +ellipsis
-  +size($length)
-  display: block
-  overflow: hidden
-  margin: 0 auto
-
-  &:hover
-	color: red
-
-  +respond-to('small')
-	overflow: visible
 {% endhighlight %}
   </div>
 </div>
@@ -1175,21 +908,6 @@ There are pros and cons for both ways. On one hand, alphabetical order is univer
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-.foo
-  background: black
-  bottom: 0
-  color: white
-  font-weight: bold
-  font-size: 1.5em
-  height: 100px
-  overflow: hidden
-  position: absolute
-  right: 0
-  width: 100px
-{% endhighlight %}
-  </div>
 </div>
 
 On the other hand, ordering properties by type makes perfect sense. Every font-related declarations are gathered, `top` and `bottom` are reunited and reading a ruleset kind of feels like reading a short story. But unless you stick to some conventions like [Idiomatic CSS](https://github.com/necolas/idiomatic-css), there is a lot of room for interpretation in this way of doing. Where would `white-space` go: font or display? Where does belong `overflow` exactly? What is the property order within a group (it could be alphabetically, oh the irony)?
@@ -1211,21 +929,6 @@ On the other hand, ordering properties by type makes perfect sense. Every font-r
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-.foo
-  height: 100px
-  width: 100px
-  overflow: hidden
-  position: absolute
-  bottom: 0
-  right: 0
-  background: black
-  color: white
-  font-weight: bold
-  font-size: 1.5em
-{% endhighlight %}
-  </div>
 </div>
 
 There is also another interesting subtree of type ordering called [Concentric CSS](https://github.com/brandon-rhodes/Concentric-CSS), that seems to be quite popular as well. Basically, Concentric CSS relies on the box-model to define an order: starts outside, moves inward.
@@ -1245,21 +948,6 @@ There is also another interesting subtree of type ordering called [Concentric CS
   font-weight: bold;
   font-size: 1.5em;
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-.foo
-  width: 100px
-  height: 100px
-  position: absolute
-  right: 0
-  bottom: 0
-  background: black
-  overflow: hidden
-  color: white
-  font-weight: bold
-  font-size: 1.5em
 {% endhighlight %}
   </div>
 </div>
@@ -1309,14 +997,6 @@ One particular feature Sass provides that is being overly misused by many develo
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-.foo
-  .bar
-	&:hover
-	  color: red
-{% endhighlight %}
-  </div>
 </div>
 
 ... will generate this CSS:
@@ -1339,13 +1019,6 @@ Along the same lines, since Sass 3.3 it is possible to use the current selector 
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-.foo
-  &-bar
-	color: red
-{% endhighlight %}
-  </div>
 </div>
 
 ... will generate this CSS:
@@ -1356,12 +1029,6 @@ Along the same lines, since Sass 3.3 it is possible to use the current selector 
 .foo-bar {
   color: red;
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-.foo-bar
-  color: red
 {% endhighlight %}
   </div>
 </div>
@@ -1392,18 +1059,6 @@ To prevent such a situation, we **avoid selector nesting except for pseudo-class
 	content: 'pseudo-element';
   }
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-.foo
-  color: red
-
-  &:hover
-	color: green
-
-  &::before
-	content: 'pseudo-element'
 {% endhighlight %}
   </div>
 </div>
@@ -1456,17 +1111,6 @@ $vertical-rhythm-baseline: 1.5rem;
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-$vertical-rhythm-baseline: 1.5rem
-
-=size($width, $height: $width)
-  // ...
-
-@function opposite-direction($direction)
-  // ...
-{% endhighlight %}
-  </div>
 </div>
 
 
@@ -1496,15 +1140,6 @@ $CSS_POSITIONS: top, right, bottom, left, center;
 $css-positions: top, right, bottom, left, center;
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-$CSS_POSITIONS: top, right, bottom, left, center
-
-// Nope
-$css-positions: top, right, bottom, left, center
-{% endhighlight %}
-  </div>
 </div>
 
 
@@ -1532,14 +1167,6 @@ $su-configuration: ( ... );
 @function su-rainbow($unicorn) {
   // ...
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-$su-configuration: ( ... )
-
-@function su-rainbow($unicorn)
-  // ...
 {% endhighlight %}
   </div>
 </div>
@@ -1602,20 +1229,6 @@ Ideally, *any* CSS ruleset should be preceded by a C-style comment explaining th
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/**
- * Helper class to truncate and add ellipsis to a string too long for it to fit
- * on a single line.
- * 1. Prevent content from wrapping, forcing it on a single line.
- * 2. Add ellipsis at the end of the line.
- */
-.ellipsis
-  white-space: nowrap /* 1 */
-  text-overflow: ellipsis /* 2 */
-  overflow: hidden
-{% endhighlight %}
-  </div>
 </div>
 
 Basically everything that is not obvious at first glance should be commented. There is no such thing as too much documentation. Remember that you cannot *comment too much*, so get on fire and write comments for everything that is worth it.
@@ -1628,13 +1241,6 @@ When commenting a Sass-specific section, use Sass inline comments instead of a C
 // Add current module to the list of imported modules.
 // `!global` flag is required so it actually updates the global variable.
 $imported-modules: append($imported-modules, $module) !global;
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Add current module to the list of imported modules.
-// `!global` flag is required so it actually updates the global variable.
-$imported-modules: append($imported-modules, $module) !global
 {% endhighlight %}
   </div>
 </div>
@@ -1668,15 +1274,6 @@ SassDoc provides two different syntaxes for comments: either C-style or inline. 
 $vertical-rhythm-baseline: 1.5rem;
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/**
- * Vertical rhythm baseline used all over the code base.
- * @type Length
- */
-$vertical-rhythm-baseline: 1.5rem
-{% endhighlight %}
-  </div>
 </div>
 
 <div class="code-block">
@@ -1685,13 +1282,6 @@ $vertical-rhythm-baseline: 1.5rem
 /// Vertical rhythm baseline used all over the code base.
 /// @type Length
 $vertical-rhythm-baseline: 1.5rem;
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/// Vertical rhythm baseline used all over the code base.
-/// @type Length
-$vertical-rhythm-baseline: 1.5rem
 {% endhighlight %}
   </div>
 </div>
@@ -1749,39 +1339,6 @@ Here is an example of a mixin extensively documented with SassDoc:
   width: $width;
   height: $height;
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/// Mixin helping defining both `width` and `height` simultaneously.
-///
-/// @author Hugo Giraudel
-///
-/// @access public
-///
-/// @param {Length} $width - Element's `width`
-/// @param {Length} $height ($width) - Element's `height`
-///
-/// @example scss - Usage
-/// .foo
-///   +size(10em)
-///
-/// .bar
-///   +size(100%, 10em)
-///
-/// @example css - CSS output
-/// .foo {
-///   width: 10em;
-///   height: 10em;
-/// }
-///
-/// .bar {
-///   width: 100%;
-///   height: 10em;
-/// }
-=size($width, $height: $width)
-  width: $width
-  height: $height
 {% endhighlight %}
   </div>
 </div>
@@ -2087,38 +1644,6 @@ In order to preserve readability, the main file should respect these guidelines:
 @import 'themes/admin';
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-@import vendors/bootstrap
-@import vendors/jquery-ui
-
-@import utils/variables
-@import utils/functions
-@import utils/mixins
-@import utils/placeholders
-
-@import base/reset
-@import base/typography
-
-@import layout/navigation
-@import layout/grid
-@import layout/header
-@import layout/footer
-@import layout/sidebar
-@import layout/forms
-
-@import components/buttons
-@import components/carousel
-@import components/cover
-@import components/dropdown
-
-@import pages/home
-@import pages/contact
-
-@import themes/theme
-@import themes/admin
-{% endhighlight %}
-  </div>
 </div>
 
 There is another way of importing partials that I deem valid as well. On the bright side, it makes the file more readable. On the other hand, it makes updating it slightly more painful. Anyway, I'll let you decide which is best, it does not matter much. For this way of doing, the main file should respect these guidelines:
@@ -2169,45 +1694,6 @@ There is another way of importing partials that I deem valid as well. On the bri
   'themes/admin';
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-@import
-  vendors/bootstrap,
-  vendors/jquery-ui
-
-@import
-  utils/variables,
-  utils/functions,
-  utils/mixins,
-  utils/placeholders
-
-@import
-  base/reset,
-  base/typography
-
-@import
-  layout/navigation,
-  layout/grid,
-  layout/header,
-  layout/footer,
-  layout/sidebar,
-  layout/forms
-
-@import
-  components/buttons,
-  components/carousel,
-  components/cover,
-  components/dropdown
-
-@import
-  pages/home,
-  pages/contact
-
-@import
-  themes/theme,
-  themes/admin
-{% endhighlight %}
-  </div>
 </div>
 
 <div class="note">
@@ -2237,19 +1723,6 @@ There is an interesting concept that has been made popular by [Harry Roberts](ht
 .site-nav a {
 	color: #BADA55 !important;
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/**
- * Nav specificity fix.
- *
- * Someone used an ID in the header code (`#header a {}`) which trumps the
- * nav selectors (`.site-nav a {}`). Use !important to override it until I
- * have time to refactor the header stuff.
- */
-.site-nav a
-	color: #BADA55 !important
 {% endhighlight %}
   </div>
 </div>
@@ -2304,15 +1777,6 @@ $breakpoints: (
 );
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-$breakpoints: ("medium": (min-width: 800px), "large": (min-width: 1000px), "huge": (min-width: 1200px))
-
-// Nope
-$breakpoints: ("tablet": (min-width: 800px), "computer": (min-width: 1000px), "tv": (min-width: 1200px))
-{% endhighlight %}
-  </div>
 </div>
 
 At this point, any naming convention that makes crystal clear that a design is not intimately tied to a specific device type will do the trick, as long as it gives a sense of magnitude.
@@ -2325,11 +1789,6 @@ $breakpoints: (
   'sprout': (min-width: 1000px),
   'plant': (min-width: 1200px),
 );
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-$breakpoints: ("seed": (min-width: 800px), "sprout": (min-width: 1000px), "plant": (min-width: 1200px))
 {% endhighlight %}
   </div>
 </div>
@@ -2371,22 +1830,6 @@ Once you have named your breakpoints the way you want, you need a way to use the
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/// Responsive manager.
-/// @access public
-/// @param {String} $breakpoint - Breakpoint
-/// @requires $breakpoints
-=respond-to($breakpoint)
-  @if map-has-key($breakpoints, $breakpoint)
-	@media #{inspect(map-get($breakpoints, $breakpoint))}
-	  @content
-
-  @else
-	@error 'No value found for `#{$breakpoint}`. '
-		 + 'Please make sure it is defined in `$breakpoints` map.'
-{% endhighlight %}
-  </div>
 </div>
 
 
@@ -2415,15 +1858,6 @@ Not so long ago, there has been a quite hot debate about where should be written
 	color: blue;
   }
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-.foo
-  color: red
-
-  +respond-to('small')
-	color: blue
 {% endhighlight %}
   </div>
 </div>
@@ -2525,33 +1959,6 @@ $variable: 'initial value' !global;
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Initialize a global variable at root level.
-// In this case, the `!global` flag is optional.
-$variable: 'initial value' !global
-
-// Create a mixin that overrides that global variable.
-@mixin global-variable-overriding
-  $variable: 'mixin value' !global
-
-.local-scope
-  // Create a local variable that shadows the global one.
-  $variable: 'local value'
-
-  // Include the mixin: it overrides the global variable.
-  +global-variable-overriding
-
-  // Print the variable's value.
-  // It is the **local** one, since it shadows the global one.
-  content: $variable
-
-// Print the variable in another selector that does no shadowing.
-// It is the **global** one, as expected.
-.other-local-scope
-  content: $variable
-{% endhighlight %}
-  </div>
 </div>
 
 {% include donate.html %}
@@ -2571,11 +1978,6 @@ When building a library, a framework, a grid system or any piece of Sass that is
 $baseline: 1em !default;
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-$baseline: 1em !default
-{% endhighlight %}
-  </div>
 </div>
 
 Thanks to this, a developer can define his own `$baseline` variable *before* importing your library without seeing his value redefined.
@@ -2590,17 +1992,6 @@ $baseline: 2em;
 @import 'your-library';
 
 // $baseline == 2em;
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Developer's own variable
-$baseline: 2em
-
-// Your library declaring `$baseline`
-@import your-library
-
-// $baseline == 2em
 {% endhighlight %}
   </div>
 </div>
@@ -2622,15 +2013,6 @@ $baseline: 2em;
 
 // Nope
 $baseline: 2em !global;
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-$baseline: 2em
-
-// Nope
-$baseline: 2em !global
 {% endhighlight %}
   </div>
 </div>
@@ -2669,24 +2051,6 @@ $z-indexes: (
 @function z($layer) {
   @return map-get($z-indexes, $layer);
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/// Z-indexes map, gathering all Z layers of the application
-/// @access private
-/// @type Map
-/// @prop {String} key - Layer's name
-/// @prop {Number} value - Z value mapped to the key
-$z-indexes: ('modal': 5000, 'dropdown': 4000, 'default': 1, 'below': -1,)
-
-/// Get a z-index value from a layer name
-/// @access public
-/// @param {String} $layer - Layer's name
-/// @return {Number}
-/// @require $z-indexes
-@function z($layer)
-  @return map-get($z-indexes, $layer)
 {% endhighlight %}
   </div>
 </div>
@@ -2739,17 +2103,6 @@ If you are going to use extend, let me also remind you that it does not play wel
 	@extend .foo;
   }
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-.foo
-  content: 'foo'
-
-@media print
-  .bar
-	// This doesn't work. Worse: it crashes.
-	@extend .foo
 {% endhighlight %}
   </div>
 </div>
@@ -2815,18 +2168,6 @@ That being said, mixins are extremely useful and you should be using some. The r
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/// Helper to clear inner floats
-/// @author Nicolas Gallagher
-/// @link http://nicolasgallagher.com/micro-clearfix-hack/ Micro Clearfix
-@mixin clearfix
-  &::after
-	content: ''
-	display: table
-	clear: both
-{% endhighlight %}
-  </div>
 </div>
 
 Another valid example would be a mixin to size an element, defining both `width` and `height` at the same time. Not only would it make the code lighter to type, but also easier to read.
@@ -2842,17 +2183,6 @@ Another valid example would be a mixin to size an element, defining both `width`
   width: $width;
   height: $height;
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/// Helper to size an element
-/// @author Hugo Giraudel
-/// @param {Length} $width
-/// @param {Length} $height
-=size($width, $height: $width)
-  width: $width
-  height: $height
 {% endhighlight %}
   </div>
 </div>
@@ -2881,13 +2211,6 @@ When dealing with an unknown number of arguments in a mixin, always use an `argl
   // type-of($shadows) == 'arglist'
   // ...
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-=shadows($shadows...)
-  // type-of($shadows) == 'arglist'
-  // ...
 {% endhighlight %}
   </div>
 </div>
@@ -2923,27 +2246,6 @@ $params: (
 @include dummy($params...);
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-=dummy($a, $b, $c)
-  // ...
-
-// Yep
-+dummy(true, 42, 'kittens')
-
-// Yep but nope
-$params: true, 42, 'kittens'
-$value: dummy(nth($params, 1), nth($params, 2), nth($params, 3))
-
-// Yep
-$params: true, 42, 'kittens'
-+dummy($params...)
-
-// Yep
-$params: ( 'c': 'kittens', 'a': true, 'b': 42, )
-+dummy($params...)
-{% endhighlight %}
-  </div>
 </div>
 
 
@@ -2976,15 +2278,6 @@ If you cannot use Autoprefixer and use neither Bourbon nor Compass, then and onl
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Nope
-=transform($value)
-  -webkit-transform: $value
-  -moz-transform: $value
-  transform: $value
-{% endhighlight %}
-  </div>
 </div>
 
 Do it the clever way.
@@ -3007,21 +2300,6 @@ Do it the clever way.
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/// Mixin helper to output vendor prefixes
-/// @access public
-/// @author HugoGiraudel
-/// @param {String} $property - Unprefixed CSS property
-/// @param {*} $value - Raw CSS value
-/// @param {List} $prefixes - List of prefixes to output
-=prefix($property, $value, $prefixes: ())
-  @each $prefix in $prefixes
-	-#{$prefix}-#{$property}: $value
-
-  #{$property}: $value
-{% endhighlight %}
-  </div>
 </div>
 
 Then using this mixin should be very straightforward:
@@ -3032,12 +2310,6 @@ Then using this mixin should be very straightforward:
 .foo {
   @include prefix(transform, rotate(90deg), webkit ms);
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-.foo
-  +prefix(transform, rotate(90deg), webkit ms)
 {% endhighlight %}
   </div>
 </div>
@@ -3090,21 +2362,6 @@ Anyway, if you ever find yourself in need of them, please respect the following 
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-@if $support-legacy
-  // ...
-@else
-  // ...
-
-// Nope
-@if ($support-legacy == true)
-  // ...
-@else
-  // ...
-{% endhighlight %}
-  </div>
 </div>
 
 When testing for a falsy value, always use the `not` keyword rather than testing against `false` or `null`.
@@ -3121,17 +2378,6 @@ When testing for a falsy value, always use the `not` keyword rather than testing
 @if index($list, $item) == null {
   // ...
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-@if not index($list, $item)
-  // ...
-
-// Nope
-@if index($list, $item) == null
-  // ...
 {% endhighlight %}
   </div>
 </div>
@@ -3158,23 +2404,6 @@ When using conditional statements within a function to return a different result
 	@return false;
   }
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-// Yep
-@function dummy($condition)
-  @if $condition
-	@return true
-
-  @return false;
-
-// Nope
-@function dummy($condition)
-  @if $condition
-	@return true
-  @else
-	@return false
 {% endhighlight %}
   </div>
 </div>
@@ -3214,13 +2443,6 @@ The `@each` loop is definitely the most-used out of the three loops provided by 
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-@each $theme in $themes
-  .section-#{$theme}
-	background-color: map-get($colors, $theme)
-{% endhighlight %}
-  </div>
 </div>
 
 When iterating on a map, always use `$key` and `$value` as variable names to enforce consistency.
@@ -3233,13 +2455,6 @@ When iterating on a map, always use `$key` and `$value` as variable names to enf
 	background-color: $value;
   }
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-@each $key, $value in $map
-  .section-#{$key}
-	background-color: $value
 {% endhighlight %}
   </div>
 </div>
@@ -3261,13 +2476,6 @@ The `@for` loop might be useful when combined with CSS' `:nth-*` pseudo-classes.
 	border-color: hsl($i * 36, 50%, 50%);
   }
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-@for $i from 1 through 10
-  .foo:nth-of-type(#{$i})
-	border-color: hsl($i * 36, 50%, 50%)
 {% endhighlight %}
   </div>
 </div>
@@ -3337,18 +2545,6 @@ Take this function from [Sass-MQ](https://github.com/sass-mq/sass-mq) attempting
 }
 {% endhighlight %}
   </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-@function mq-px2em($px, $base-font-size: $mq-base-font-size)
-  @if unitless($px)
-	@warn 'Assuming #{$px} to be in pixels, attempting to convert it into pixels.'
-	@return mq-px2em($px + 0px)
-  @else if unit($px) == em
-	@return $px
-
-  @return ($px / $base-font-size) * 1em
-{% endhighlight %}
-  </div>
 </div>
 
 If the value happens to be unitless, the function assumes the value is meant to be expressed in pixels. At this point, an assumption may be risky so the user should be warned that the software did something that could be considered unexpected.
@@ -3392,28 +2588,6 @@ $z-indexes: (
 
   @return map-get($z-indexes, $layer);
 }
-{% endhighlight %}
-  </div>
-  <div class="code-block__wrapper" data-syntax="sass">
-{% highlight sass %}
-/// Z-indexes map, gathering all Z layers of the application
-/// @access private
-/// @type Map
-/// @prop {String} key - Layer's name
-/// @prop {Number} value - Z value mapped to the key
-$z-indexes: ('modal': 5000, 'dropdown': 4000, 'default': 1, 'below': -1,)
-
-/// Get a z-index value from a layer name
-/// @access public
-/// @param {String} $layer - Layer's name
-/// @return {Number}
-/// @require $z-indexes
-@function z($layer)
-  @if not map-has-key($z-indexes, $layer)
-	@error 'There is no layer named `#{$layer}` in $z-indexes. '
-		 + 'Layer should be one of #{map-keys($z-indexes)}.'
-
-  @return map-get($z-indexes, $layer)
 {% endhighlight %}
   </div>
 </div>
