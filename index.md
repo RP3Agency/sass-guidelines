@@ -2,58 +2,16 @@
 layout: default
 ---
 
-# About the author
+# About This Document
 
-My name is [Hugo Giraudel](http://hugogiraudel.com), I am a front-end developer from France about to move to Berlin, Germany. I have been writing Sass for over two years now and am the author of Sass-related projects such as [SassDoc](http://sassdoc.com) and [Sass-Compatibility](http://sass-compatibility.github.io).
-
-I have also written a couple of Sass libraries, mostly for the heck of it: [SassyJSON](https://github.com/HugoGiraudel/SassyJSON), [SassyLists](http://sassylists.com), [SassySort](https://github.com/HugoGiraudel/SassySort), [SassyCast](https://github.com/HugoGiraudel/SassyCast), [SassyMatrix](https://github.com/HugoGiraudel/SassyMatrix), [SassyBitwise](https://github.com/HugoGiraudel/SassyBitwise), [SassyIteratorsGenerators](https://github.com/HugoGiraudel/SassyIteratorsGenerators), [SassyLogger](https://github.com/HugoGiraudel/SassyLogger), [SassyStrings](https://github.com/HugoGiraudel/SassyStrings) and [SassyGradients](https://github.com/HugoGiraudel/SassyGradients).
-
-<div class="button-wrapper">
-  <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank" class="button">Catch me on Twitter</a>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-# Contributing
-
-Sass Guidelines is a free project that I maintain in my spare time. Needless to say, it is quite a large amount of work to keep everything up-to-date, documented and relevant. Obviously, knowing that you liked this styleguide is already much appreciated!
-
-Now if you feel like contributing, please know that tweeting about it, spreading the word, or fixing a tiny typo by opening an issue or a pull-request on the [GitHub repository](https://github.com/HugoGiraudel/sass-guidelines) would be great!
-
-Last but not least before we start: if you enjoyed this document, or if it is useful for you or your team, please consider supporting it!
-
-<div class="button-wrapper">
-  <a href="https://gum.co/sass-guildelines" target="_blank" class="button">Support Sass Guidelines</a>
-  {% capture tweet %}{{ site.title }}, {{ site.description }} by @{{ site.twitter_username }} –{% endcapture %}
-  <a href="https://twitter.com/share?text={{ tweet | cgi_escape }}&url={{ site.url }}" target="_blank" class="button">Spread the word</a>
-</div>
-
-
-
-
-
-
-
-
-
-
+These guidelines are a fork of the [Sass Guidelines by Hugo Giraudel](http://sass-guidelin.es), a front-end developer from France. They have been modified to match the standards we use on projects at [RP3 Agency](http://rp3agency.com).
 
 # Table of Contents
 
-* [About The Author](#about-the-author)
-* [Contributing](#contributing)
+* [About This Document](#about-this-document)
 * [About Sass](#about-sass)
   * [Ruby Sass Or LibSass](#ruby-sass-or-libsass)
   * [Sass Or SCSS](#sass-or-scss)
-  * [Other Preprocessors](#other-preprocessors)
 * [Introduction](#introduction)
   * [Why A Styleguide](#why-a-styleguide)
   * [Disclaimer](#disclaimer)
@@ -161,9 +119,7 @@ That being said, there are many ways to use these features. Some good, some bad,
 
 In 2014, [Ruby Sass and LibSass teams decided to wait for both versions to sync up before moving forward](https://github.com/sass/libsass/wiki/The-LibSass-Compatibility-Plan). Since then, LibSass has been actively releasing versions to have feature-parity with its older brother. The last remaining inconsistencies are gathered and listed by myself under the [Sass-Compatibility](http://sass-compatibility.github.io) project. If you are aware of an incompatibility between the two versions that is not listed, please be kind enough to open an issue.
 
-Coming back to choosing your compiler. Actually, it is really up to your project. If it is a Ruby on Rails project, you better use Ruby Sass, which is perfectly suited for such a case. Also know that Ruby Sass will always be the reference implementation and will always lead LibSass in features.
-
-On non-Ruby project that need a workflow integration, LibSass will probably be a better idea since it is mostly dedicated to being wrapped. So if you want to use, let's say NodeJS, [node-sass](https://github.com/sass/node-sass) is all chosen.
+Until LibSass achieves full feature parity with Ruby Sass, we will continue to use Ruby Sass in our projects. The Sass version we will use will be the latest available at the commencement of a project, using [Bundler](http://bundler.io) to lock that version in place. Sass is compiled via gulp using the [gulp-ruby-sass plugin](https://www.npmjs.com/package/gulp-ruby-sass).
 
 
 
@@ -188,7 +144,7 @@ Since then, Sass (the preprocessor) has been providing two different syntaxes: S
 
 Sass's whitespace-sensitive syntax relies on indentation to get rid of braces, semi-colons and other punctuation symbols, leading to a leaner and shorter syntax. Meanwhile, SCSS is easier to learn since it's mostly some tiny extra bits on top of CSS.
 
-I, myself, prefer SCSS over Sass because it is closer to CSS and friendlier to most developers. Because of that, I will use SCSS rather than Sass throughout these guidelines.
+At RP3 Agency, we use SCSS because it is closer to CSS and friendlier to most developers.
 
 
 
@@ -201,42 +157,9 @@ I, myself, prefer SCSS over Sass because it is closer to CSS and friendlier to m
 
 
 
-## Other preprocessors
+## Postprocessors
 
-Sass is a preprocessor among other things. Its most serious competitor has to be [LESS](http://lesscss.org/), a NodeJS based preprocessor that has gotten quite popular thanks to the famous CSS framework [Bootstrap](http://getbootstrap.com/) using it. There is also [Stylus](http://learnboost.github.io/stylus/) which is kind of the nerdy unrestricted version of LESS where you can do pretty much whatever you want since it almost turns CSS into a programming language.
-
-*Why choose Sass over LESS or another preprocessor?* is still a valid question today. Not so long ago, we used to recommend Sass for Ruby-based projects because it was first made in Ruby and played well with Ruby on Rails. Now that LibSass has caught up (mostly) with original Sass, this is no longer relevant advice.
-
-What I do like with Sass is its conservative approach to CSS. Sass's design is based on strong design principles: much of the design comes naturally out of core designers' beliefs that adding extra features has a complexity cost that needs to be justified by usefulness, and that it should easy to reason about what a given block of styles is doing looking at that block alone. Also, Sass has a much closer attention to detail than other preprocessors. As far as I can tell, core designers care deeply about supporting every corner-case of CSS compatibility and making sure every general behavior is consistent.
-
-In other words, Sass is not a preprocessor aiming at pleasing nerdy wannabe programmers like me by adding extraordinary features on top of a language that is not intended to support any logical use-cases. It is a software aiming at solving actual issues; helping to provide useful functionality to CSS where CSS proves shortcoming.
-
-Preprocessors aside, we should also mention postprocessors, which have received significant exposure in the last few months, thanks mainly to [postCSS](https://github.com/postcss/postcss) and [CSSNext](https://github.com/cssnext/cssnext). Postprocessors are pretty much equivalent to preprocessors except they do not provide anything else other than upcoming CSS syntax.
-
-You can think of postprocessors as a polyfill for unsupported CSS features. For instance, you would write variables as they are described in the [CSS specifications](http://dev.w3.org/csswg/css-variables/), then compile your stylesheets with a postprocessor only to find every variable occurrence gets replaced with its value, as Sass would do.
-
-The idea behind postprocessors is that once browsers support new features (e.g. CSS variables), the postprocessor does not compile them anymore and lets browsers take over.
-
-While providing tomorrow's syntax today is something of a noble idea, I have to say I still prefer using Sass for most tasks. Yet, there are some occasions where I believe postprocessors are more suited than Sass and the like, for instance CSS prefixing. But we'll get back to this.
-
-
-
-### Further reading
-
-* [LESS](http://lesscss.org/)
-* [Stylus](http://learnboost.github.io/stylus/)
-* [CSSNext](https://github.com/cssnext/cssnext)
-* [postCSS](https://github.com/postcss/postcss)
-
-
-
-
-
-
-
-
-
-
+Sass is a preprocessor among other things. While this document mostly addresses Sass and how we use it at RP3 Agency, it's worth mentioning _postprocessors_ and their role. Postprocessors are pretty much equivalent to preprocessors except they do not provide anything else other than upcoming CSS syntax. The most well-known postprocessor is [Autoprefixer](https://github.com/postcss/autoprefixer), used to apply browser vendor prefixes to advanced CSS properties that need them. As with Sass itself, Autoprefixer is applied through gulp in our build process, allowing us to write completely standards-compliant CSS properties without regard to which advanced properties need the `-moz-*` or `-webkit-` prefixes.
 
 # Introduction
 
@@ -272,9 +195,9 @@ Needless to say, the more developers involved on a project, the more code guidel
 
 First things first: **this is not a CSS styleguide**. This document will not discuss naming conventions for CSS classes, modular patterns and the question of IDs in the CSS world. These guidelines only aim at dealing with Sass-specific content.
 
-Also, this styleguide is my own and therefore **very opinionated**. Think of it as a collection of methodologies and advice that I have polished and given over the years. It also gives me the opportunity to link to a handful of insightful resources, so be sure to check the *further readings*.
+Also, this styleguide is specific to the projects at RP3 Agency and therefore **very opinionated**. Think of it as a collection of methodologies and advice that we have refined and polished over the years. It also grants the opportunity to link to a handful of insightful resources, so be sure to check the *further readings*.
 
-Obviously, this is certainly not the only way of doing things, and it may or may not suit your project. Feel free to pick from it and adapt it to your needs. As we say, *your mileage may vary*.
+Obviously, this is certainly not the only way of doing things. However, in order to work effectively _as a team_, these guidelines aim to establish certain base principles that we can all follow, allowing us to more easily work on each other's code.
 
 
 
@@ -285,13 +208,13 @@ Obviously, this is certainly not the only way of doing things, and it may or may
 
 At the end of the day, if there is one thing I would like you to get from this whole styleguide, it is that **Sass should be kept as simple as it can be**.
 
-Thanks to my silly experiments like [bitwise operators](https://github.com/HugoGiraudel/SassyBitwise), [iterators and generators](https://github.com/HugoGiraudel/SassyIteratorsGenerators) and [a JSON parser](https://github.com/HugoGiraudel/SassyJSON) in Sass, we are all well aware of what one can do with this preprocessor.
-
-Meanwhile, CSS is a simple language. Sass, being intended to write CSS, should not get much more complex than regular CSS. The [KISS principle](http://en.wikipedia.org/wiki/KISS_principle) (Keep It Simple Stupid) is key here and may even take precedence over the [DRY principle](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself) (Don't Repeat Yourself) in some circumstances.
+CSS is _not_ a programming language. Sass, being intended to write CSS, should not get much more complex than regular CSS. The [KISS principle](http://en.wikipedia.org/wiki/KISS_principle) (Keep It Simple Stupid) is key here and may even take precedence over the [DRY principle](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself) (Don't Repeat Yourself) in some circumstances.
 
 Sometimes, it's better to repeat a little to keep the code maintainable, rather than building a top-heavy, unwieldy, unnecessarily complicated system that is completely unmaintainable because it is overly complex.
 
-Also, and let me quote [Harry Roberts](https://csswizardry.com) once again, **pragmatism trumps perfection**. At some point, you will probably find yourself going against the rules described here. If it makes sense, if it feels right, do it. Code is just a means, not an end.
+Also, and to quote [Harry Roberts](https://csswizardry.com) once again, **pragmatism trumps perfection**. At some point, you will probably find yourself going against the rules described here. If it makes sense, if it feels right, do it. Code is just a means, not an end.
+
+(However, if you do find a compelling reason to stray from the guidelines set forth in this document, please document said reason inline in the code. There may be a way to better adhere to these guidelines and still achieve your objectives if another developer on your team has the opportunity to review the code.)
 
 
 
