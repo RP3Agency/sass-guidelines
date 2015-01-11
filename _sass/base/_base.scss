@@ -20,7 +20,7 @@ a {
   transition: .15s;
 
   @include on-event {
-    color: $secondary-color;
+    color: $tertiary-color;
   }
 }
 

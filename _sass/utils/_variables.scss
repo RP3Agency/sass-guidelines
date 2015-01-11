@@ -44,13 +44,18 @@ $dark-blue: mix(#000, #00bbe3, 20%);
 
 /// Main color
 /// @type Color
-/// @require $light-pink
+/// @require $light-blue
 $main-color: $light-blue;
 
 /// Secondary color
 /// @type Color
-/// @require $dark-pink
+/// @require $dark-blue
 $secondary-color: $dark-blue;
+
+/// Tertiary color
+/// @type Color
+/// @require $light-pink
+$tertiary-color: $light-pink;
 
 /// Note background
 /// @type Color
