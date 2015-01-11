@@ -287,21 +287,22 @@ CSS does not require strings to be quoted, not even those containing spaces. Tak
 
 Because of this, Sass *also* does not require strings to be quoted. Even better (and *luckily*, you'll concede), a quoted string is strictly equivalent to its unquoted twin (e.g. `'abc'` is strictly equal to `abc`).
 
-That being said, languages that do not require strings to be quoted are definitely a minority and so, **strings should always be wrapped with single quotes** in Sass (single being easier to type than double on *qwerty* keyboards). Besides consistency with other languages, including CSS' cousin JavaScript, there are several reasons for this choice:
+That being said, languages that do not require strings to be quoted are definitely a minority and so, **strings should always be wrapped with double quotes**. Besides consistency with other languages, including CSS' cousin JavaScript, there are several reasons for this choice:
 
 * color names are treated as colors when unquoted, which can lead to serious issues;
 * most syntax highlighters will choke on unquoted strings;
 * it helps general readability;
+* text editors such as Sublime Text syntax highlight double quotes more consistently than they do single quotes when working with SCSS files;
 * there is no valid reason not to quote strings.
 
 <div class="code-block">
   <div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
-$font-stack: 'Helvetica Neue Light', 'Helvetica', 'Arial', sans-serif;
+$font-stack: "Helvetica Neue Light", "Helvetica", "Arial", sans-serif;
 
 // Nope
-$font-stack: "Helvetica Neue Light", "Helvetica", "Arial", sans-serif;
+$font-stack: 'Helvetica Neue Light', 'Helvetica', 'Arial', sans-serif;
 
 // Nope
 $font-stack: Helvetica Neue Light, Helvetica, Arial, sans-serif;
@@ -310,10 +311,10 @@ $font-stack: Helvetica Neue Light, Helvetica, Arial, sans-serif;
   <div class="code-block__wrapper" data-syntax="sass">
 {% highlight sass %}
 // Yep
-$font-stack: 'Helvetica Neue Light', 'Helvetica', 'Arial', sans-serif
+$font-stack: "Helvetica Neue Light", "Helvetica", "Arial", sans-serif
 
 // Nope
-$font-stack: "Helvetica Neue Light", "Helvetica", "Arial", sans-serif
+$font-stack: 'Helvetica Neue Light', 'Helvetica', 'Arial', sans-serif
 
 // Nope
 $font-stack: Helvetica Neue Light, Helvetica, Arial, sans-serif
@@ -332,7 +333,7 @@ URLs should be quoted as well, for the same reasons as above:
 {% highlight scss %}
 // Yep
 .foo {
-  background-image: url('/images/kittens.jpg');
+  background-image: url("/images/kittens.jpg");
 }
 
 // Nope
@@ -612,24 +613,26 @@ Colors occupy an important place in the CSS language. Naturally, Sass ends up be
 
 In order to make colors as simple as they can be, my advice would be to respect the following order of preference for color formats:
 
-1. [CSS color keywords](http://www.w3.org/TR/css3-color/#svg-color);
-1. [HSL notation](http://en.wikipedia.org/wiki/HSL_and_HSV);
-1. [RGB notation](http://en.wikipedia.org/wiki/RGB_color_model);
 1. Hexadecimal notation. Preferably lowercase and shortened when possible.
+1. [RGB notation](http://en.wikipedia.org/wiki/RGB_color_model);
+1. [HSL notation](http://en.wikipedia.org/wiki/HSL_and_HSV);
+1. [CSS color keywords](http://www.w3.org/TR/css3-color/#svg-color);
 
-For starters, keywords often speak for themselves. The HSL representation is not only the easiest one for the human brain to comprehend<sup>[citation needed]</sup>, it also makes it easy for stylesheet authors to tweak the color by adjusting the hue, saturation and lightness individually. RGB still has the benefit of showing right away if the color is more of a blue, a green or a red but it does not make it easy to build a color from the three parts. Last, hexadecimal is close to indecipherable for the human mind.
+Hexadecimal notation is the most traditional way of expressing colors in CSS. Since the days when [web-safe colors](http://en.wikipedia.org/wiki/Web_colors#Web-safe_colors) were a thing, the hexadecimal system was the industry-standard for expressing colors, and as such all major software programs used to generate components for the web understand and work with it. Additionally, Sass has a number of color functions that can easily convert hexadecimal notation when another means (such as RGBa) is required.
+
+Beyond that, RGB is the next most commonly used means of expressing colors. HSL, while increasingly popular, offers complications because software programs such as Photoshop can express colors in the similar-but-not-quite-the-same-thing HSB notation. Lastly, no web developer I have ever met uses the CSS official "named" color keywords on a regular basis. The only one that I use ever is "white" (#fff), and even then it is preferable to define that as a variable instead of using the CSS color name.
 
 <div class="code-block">
   <div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 .foo {
-  color: red;
+  color: #f00;
 }
 
 // Nope
 .foo {
-  color: #FF0000;
+  color: red;
 }
 {% endhighlight %}
   </div>
@@ -637,11 +640,11 @@ For starters, keywords often speak for themselves. The HSL representation is not
 {% highlight sass %}
 // Yep
 .foo
-  color: red
+  color: #f00
 
 // Nope
 .foo
-  color: #FF0000
+  color: red
 {% endhighlight %}
   </div>
 </div>
@@ -715,8 +718,6 @@ $main-theme-color: $sass-pink
 
 Doing this would prevent a theme change leading to something like `$sass-pink: blue`.
 
-{% include donate.html %}
-
 
 
 ### Lightening and darkening colors
@@ -730,7 +731,7 @@ The thing is, those functions often do not provide the expected result. On the o
 The benefit of using `mix` rather than one of the two aforementioned functions is that it will progressively go to black (or white) as you decrease the proportion of the color, whereas `darken` and `lighten` will quickly blow out a color all the way to black or white.
 
 <figure>
-  <img src="/assets/images/lighten-darken-mix.png" alt="Illustration of the difference between lighten/darken and mix Sass functions" />
+  <img src="/sass-guidelines/assets/images/lighten-darken-mix.png" alt="Illustration of the difference between lighten/darken and mix Sass functions" />
   <figcaption>Illustration of the difference between <code>lighten</code>/<code>darken</code> and <code>mix</code> by <a href="http://codepen.io/KatieK2/pen/tejhz/" target="_blank">KatieK</a></figcaption>
 </figure>
 
@@ -792,6 +793,7 @@ If you don't want to write the `mix` function every time, you can create two eas
 * [Sass Color Variables That Don't Suck](http://davidwalsh.name/sass-color-variables-dont-suck)
 * [Using Sass to Build Color Palettes](http://www.sitepoint.com/using-sass-build-color-palettes/)
 * [Dealing with Color Schemes in Sass](http://www.sitepoint.com/dealing-color-schemes-sass/)
+* [The Perfect Sunset, Part I: Better Colors With Sass](http://revoltpuppy.com/articles/39)
 
 
 
@@ -813,12 +815,12 @@ Lists should respect the following guidelines:
   <div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
-$font-stack: 'Helvetica', 'Arial', sans-serif;
+$font-stack: "Helvetica", "Arial", sans-serif;
 
 // Nope
 $font-stack:
-  'Helvetica',
-  'Arial',
+  "Helvetica",
+  "Arial",
   sans-serif;
 
 // Nope
@@ -1277,7 +1279,7 @@ There is also another interesting subtree of type ordering called [Concentric CS
 I must say I cannot decide myself. A [recent poll on CSS-Tricks](http://css-tricks.com/poll-results-how-do-you-order-your-css-properties/) determined that over 45% developers order their declarations by type against 14% alphabetically. Also, there are 39% that go full random, including myself.
 
 <figure>
-  <img src="/assets/images/css_order_chart.png" alt="" />
+  <img src="/sass-guidelines/assets/images/css_order_chart.png" alt="" />
   <figcaption>Chart showing how developers order their CSS declarations</figcaption>
 </figure>
 
@@ -1718,7 +1720,7 @@ SassDoc has two major roles:
 * being able to generate an HTML version of the API documentation by using any of the SassDoc endpoints (CLI tool, Grunt, Gulp, Broccoli, Node...).
 
 <figure>
-<img alt="" src="/assets/images/sassdoc-preview.png" />
+<img alt="" src="/sass-guidelines/assets/images/sassdoc-preview.png" />
 <figcaption>Documentation generated by SassDoc</figcaption>
 </figure>
 
@@ -1882,7 +1884,7 @@ And of course:
 * `main.scss`
 
 <figure>
-  <img src="/assets/images/sass-wallpaper.jpg" alt="" />
+  <img src="/sass-guidelines/assets/images/sass-wallpaper.jpg" alt="" />
   <figcaption>Wallpaper by <a href="https://twitter.com/julien_he">Julien He</a></figcaption>
 </figure>
 
