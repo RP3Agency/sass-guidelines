@@ -10,38 +10,38 @@ These guidelines are a fork of the [Sass Guidelines by Hugo Giraudel](http://sas
 
 * [About This Document](#about-this-document)
 * [About Sass](#about-sass)
-  * [Ruby Sass Or LibSass](#ruby-sass-or-libsass)
-  * [Sass Or SCSS](#sass-or-scss)
+	* [Ruby Sass Or LibSass](#ruby-sass-or-libsass)
+	* [Sass Or SCSS](#sass-or-scss)
 * [Introduction](#introduction)
-  * [Why A Styleguide](#why-a-styleguide)
-  * [Disclaimer](#disclaimer)
-  * [Key Principles](#key-principles)
+	* [Why A Styleguide](#why-a-styleguide)
+	* [Disclaimer](#disclaimer)
+	* [Key Principles](#key-principles)
 * [Syntax & Formatting](#syntax--formatting)
-  * [Strings](#strings)
-  * [Numbers](#numbers)
+	* [Strings](#strings)
+	* [Numbers](#numbers)
 	* [Zeros](#zeros)
 	* [Units](#units)
 	* [Calculations](#calculations)
 	* [Magic numbers](#magic-numbers)
-  * [Colors](#colors)
+	* [Colors](#colors)
 	* [Color formats](#color-formats)
 	* [Colors and variables](#colors-and-variables)
 	* [Lightening and Darkening Colors](#lightening-and-darkening-colors)
-  * [Lists](#lists)
-  * [Maps](#maps)
+	* [Lists](#lists)
+	* [Maps](#maps)
 	* [Debugging A Sass Map](#debugging-a-sass-map)
-  * [CSS Ruleset](#css-ruleset)
-  * [Declaration Sorting](#declaration-sorting)
-  * [Selector Nesting](#selector-nesting)
+	* [CSS Ruleset](#css-ruleset)
+	* [Declaration Sorting](#declaration-sorting)
+	* [Selector Nesting](#selector-nesting)
 * [Naming Conventions](#naming-conventions)
-  * [Constants](#constants)
-  * [Namespace](#namespace)
+	* [Constants](#constants)
+	* [Namespace](#namespace)
 * [Commenting](#commenting)
-  * [Writing Comments](#writing-comments)
-  * [Documentation](#documentation)
+	* [Writing Comments](#writing-comments)
+	* [Documentation](#documentation)
 * [Architecture](#architecture)
-  * [Components](#components)
-  * [The 7-1 pattern](#the-7-1-pattern)
+	* [Components](#components)
+	* [The 7-1 pattern](#the-7-1-pattern)
 	* [Base Folder](#base-folder)
 	* [Components Folder](#components-folder)
 	* [Layout Folder](#layout-folder)
@@ -50,33 +50,33 @@ These guidelines are a fork of the [Sass Guidelines by Hugo Giraudel](http://sas
 	* [Utils Folder](#utils-folder)
 	* [Vendors Folder](#vendors-folder)
 	* [Main file](#main-file)
-  * [Shame file](#shame-file)
+	* [Shame file](#shame-file)
 * [Responsive Web Design and Breakpoints](#responsive-web-design-and-breakpoints)
-  * [Naming Breakpoints](#naming-breakpoints)
-  * [Breakpoint manager](#breakpoint-manager)
-  * [Media Queries Usage](#media-queries-usage)
+	* [Naming Breakpoints](#naming-breakpoints)
+	* [Breakpoint manager](#breakpoint-manager)
+	* [Media Queries Usage](#media-queries-usage)
 * [Variables](#variables)
-  * [Scoping](#scoping)
-  * [!default Flag](#default-flag)
-  * [!global Flag](#global-flag)
-  * [Multiple Variables Or Map](#multiple-variables-or-maps)
+	* [Scoping](#scoping)
+	* [!default Flag](#default-flag)
+	* [!global Flag](#global-flag)
+	* [Multiple Variables Or Map](#multiple-variables-or-maps)
 * [Extend](#extend)
 * [Mixins](#mixins)
-  * [Basics](#basics)
-  * [Arguments list](#arguments-list)
-  * [Mixins and Vendor Prefixes](#mixins-and-vendor-prefixes)
+	* [Basics](#basics)
+	* [Arguments list](#arguments-list)
+	* [Mixins and Vendor Prefixes](#mixins-and-vendor-prefixes)
 * [Conditional statements](#conditional-statements)
 * [Loops](#loops)
-  * [Each](#each)
-  * [For](#for)
-  * [While](#while)
+	* [Each](#each)
+	* [For](#for)
+	* [While](#while)
 * [Warnings and errors](#warnings-and-errors)
-  * [Warnings](#warnings)
-  * [Errors](#errors)
+	* [Warnings](#warnings)
+	* [Errors](#errors)
 * [Tools](#tools)
-  * [Compass](#compass)
-  * [Grid Systems](#grid-systems)
-  * [SCSS-lint](#scss-lint)
+	* [Compass](#compass)
+	* [Grid Systems](#grid-systems)
+	* [SCSS-lint](#scss-lint)
 * [Too Long; Didn't Read](#too-long-didnt-read)
 
 
@@ -119,7 +119,7 @@ That being said, there are many ways to use these features. Some good, some bad,
 
 In 2014, [Ruby Sass and LibSass teams decided to wait for both versions to sync up before moving forward](https://github.com/sass/libsass/wiki/The-LibSass-Compatibility-Plan). Since then, LibSass has been actively releasing versions to have feature-parity with its older brother. The last remaining inconsistencies are gathered and listed by myself under the [Sass-Compatibility](http://sass-compatibility.github.io) project. If you are aware of an incompatibility between the two versions that is not listed, please be kind enough to open an issue.
 
-Until LibSass achieves full feature parity with Ruby Sass, we will continue to use Ruby Sass in our projects. The Sass version we will use will be the latest available at the commencement of a project, using [Bundler](http://bundler.io) to lock that version in place. Sass is compiled via gulp using the [gulp-ruby-sass plugin](https://www.npmjs.com/package/gulp-ruby-sass).
+Until LibSass achieves full feature parity with Ruby Sass, RP3 will continue to use Ruby Sass in our projects. The Sass version RP3 will use will be the latest available at the commencement of a project, using [Bundler](http://bundler.io) to lock that version in place. Sass is compiled via [gulp](http://gulpjs.com) using the [gulp-ruby-sass plugin](https://www.npmjs.com/package/gulp-ruby-sass).
 
 
 
@@ -140,9 +140,7 @@ There is quite a lot of confusion regarding the semantics of the name *Sass*, an
 
 You see, Sass initially described a syntax of which the defining characteristic was its indentation-sensitivity. Soon enough, Sass maintainers decided to close the gap between Sass and CSS by providing a CSS-friendly syntax called *SCSS* for *Sassy CSS*. The motto is: if it's valid CSS, it's valid SCSS.
 
-Since then, Sass (the preprocessor) has been providing two different syntaxes: Sass (not all-caps, [please](http://sassnotsass.com)), also known as *the indented syntax*, and SCSS. Which one to use is pretty much up to you since both are strictly equivalent in features. It's only a matter of aesthetics at this point.
-
-Sass's whitespace-sensitive syntax relies on indentation to get rid of braces, semi-colons and other punctuation symbols, leading to a leaner and shorter syntax. Meanwhile, SCSS is easier to learn since it's mostly some tiny extra bits on top of CSS.
+Since then, Sass (the preprocessor) has been providing two different syntaxes: Sass (not all-caps, [please](http://sassnotsass.com)), also known as *the indented syntax*, and SCSS. Sass's whitespace-sensitive syntax relies on indentation to get rid of braces, semi-colons and other punctuation symbols, leading to a leaner and shorter syntax. Meanwhile, SCSS is easier to learn since it's mostly some tiny extra bits on top of CSS.
 
 At RP3 Agency, we use SCSS because it is closer to CSS and friendlier to most developers. It also allows us to convert legacy CSS projects to Sass simply by changing the extension from `.css` to `.scss`.
 
@@ -176,14 +174,14 @@ Needless to say, the more developers involved on a project, the more code guidel
 [Harry Roberts](http://csswizardry.com) states it very well in [CSS Guidelines](http://cssguidelin.es/#the-importance-of-a-styleguide):
 
 <blockquote>
-  <p>A coding styleguide (note, not a visual styleguide) is a valuable tool for teams who:</p>
-  <ul>
+	<p>A coding styleguide (note, not a visual styleguide) is a valuable tool for teams who:</p>
+	<ul>
 	<li>build and maintain products for a reasonable length of time;</li>
 	<li>have developers of differing abilities and specialties;</li>
 	<li>have a number of different developers working on a product at any given time;</li>
 	<li>on-board new staff regularly;</li>
 	<li>have a number of codebases that developers dip in and out of.</li>
-  </ul>
+	</ul>
 </blockquote>
 
 
@@ -245,7 +243,7 @@ Roughly, we want:
 * meaningful use of whitespace.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 .foo {
@@ -256,12 +254,12 @@ Roughly, we want:
 
 // Nope
 .foo {
-  display: block; overflow: hidden;
+	display: block; overflow: hidden;
 
-  padding: 0 1em;
+	padding: 0 1em;
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 We will not tackle the question of file organization in this section. It is the object of [another section](#architecture).
@@ -275,7 +273,7 @@ We will not tackle the question of file organization in this section. It is the 
 
 CSS does not require strings to be quoted, not even those containing spaces. Take font-family names for instance: it doesn't matter whether you wrap them in quotes for the CSS parser.
 
-Because of this, Sass *also* does not require strings to be quoted. Even better (and *luckily*, you'll concede), a quoted string is strictly equivalent to its unquoted twin (e.g. `'abc'` is strictly equal to `abc`).
+Because of this, Sass *also* does not require strings to be quoted. Even better (and *luckily*, you'll concede), a quoted string is strictly equivalent to its unquoted twin (e.g. `"abc"` is strictly equal to `abc`).
 
 That being said, languages that do not require strings to be quoted are definitely a minority and so, **strings should always be wrapped with double quotes**. Besides consistency with other languages, including CSS' cousin JavaScript, there are several reasons for this choice:
 
@@ -286,7 +284,7 @@ That being said, languages that do not require strings to be quoted are definite
 * there is no valid reason not to quote strings.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 $font-stack: "Helvetica Neue Light", "Helvetica", "Arial", sans-serif;
@@ -297,29 +295,29 @@ $font-stack: 'Helvetica Neue Light', 'Helvetica', 'Arial', sans-serif;
 // Nope
 $font-stack: Helvetica Neue Light, Helvetica, Arial, sans-serif;
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 <div class="note">
-  <p>In the previous example, <code>sans-serif</code> is not being quoted because it is a specific CSS value that needs to be unquoted.</p>
+	<p>In the previous example, <code>sans-serif</code> is not being quoted because it is a specific CSS value that needs to be unquoted.</p>
 </div>
 
 URLs should be quoted as well, for the same reasons as above:
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 .foo {
-  background-image: url("/images/kittens.jpg");
+	background-image: url("/images/kittens.jpg");
 }
 
 // Nope
 .foo {
-  background-image: url(/images/kittens.jpg);
+	background-image: url(/images/kittens.jpg);
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -345,21 +343,21 @@ In Sass, number is a data type including everything from unitless numbers to len
 Numbers should display leading zeros before a decimal value less than one. Never display trailing zeros.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 .foo {
-  padding: 2em;
-  opacity: 0.5;
+	padding: 2em;
+	opacity: 0.5;
 }
 
 // Nope
 .foo {
-  padding: 2.0em;
-  opacity: .5;
+	padding: 2.0em;
+	opacity: .5;
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -369,7 +367,7 @@ Numbers should display leading zeros before a decimal value less than one. Never
 When dealing with lengths, a `0` value should never ever have a unit.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 $length: 0;
@@ -377,7 +375,7 @@ $length: 0;
 // Nope
 $length: 0em;
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 The most common mistake I can think of regarding numbers in Sass, is thinking that units are just some strings that can be safely appended to a number. While that sounds true, that is certainly not how units work. Think of units as algebraic symbols. For instance, in the real world, multiplying 5 inches by 5 inches gives you 25 square inches. The same logic applies to Sass.
@@ -385,7 +383,7 @@ The most common mistake I can think of regarding numbers in Sass, is thinking th
 To add a unit to a number, you have to multiply this number by *1 unit*.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 $value: 42;
 
@@ -395,13 +393,13 @@ $length: $value * 1px;
 // Nope
 $length: $value + px;
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 Note that adding *0 member of that unit* also works, but I would rather recommend the aforementioned method since adding *0 unit* can somehow be a bit confusing. Indeed, when trying to convert a number to another compatible unit, adding 0 will not do the trick.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 $value: 42 + 0px;
 // -> 42px
@@ -412,7 +410,7 @@ $value: 1in + 0px;
 $value: 0px + 1in;
 // -> 96px
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 In the end, it really depends on what you are trying to achieve. Just keep in mind that adding the unit as a string is not a good way to proceed.
@@ -420,7 +418,7 @@ In the end, it really depends on what you are trying to achieve. Just keep in mi
 To remove the unit of a value, you have to divide it by *one unit of its kind*.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 $length: 42px;
 
@@ -430,7 +428,7 @@ $value: $length / 1px;
 // Nope
 $value: str-slice($length + unquote(''), 1, 2);
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 Appending a unit as a string to a number results in a string, preventing any additional operation on the value. Slicing the numeric part of a number with a unit also results in a string. This is not what you want.
@@ -442,19 +440,19 @@ Appending a unit as a string to a number results in a string, preventing any add
 **Top-level numeric calculations should always be wrapped in parentheses**. Not only does this requirement dramatically improve readability, it also prevents some edge cases by forcing Sass to evaluate the contents of the parentheses.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 .foo {
-  width: (100% / 3);
+	width: ( 100% / 3 );
 }
 
 // Nope
 .foo {
-  width: 100% / 3;
+	width: 100% / 3;
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -466,17 +464,17 @@ Appending a unit as a string to a number results in a string, preventing any add
 Needless to say **magic numbers are a plague and should be avoided at all costs**. When you cannot manage to find a reasonable explanation for why a number works, add an extensive comment explaining how you got there and why you think it works. Admitting you don't know why something works is still more helpful to the next developer than them having to figure out what's going on from scratch.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 /**
  * 1. Magic number. This value is the lowest I could find to align the top of
  * `.foo` with its parent. Ideally, we should fix it properly.
  */
 .foo {
-  top: 0.327em; /* 1 */
+	top: 0.327em; /* 1 */
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -501,7 +499,7 @@ Colors occupy an important place in the CSS language. Naturally, Sass ends up be
 
 ### Color formats
 
-In order to make colors as simple as they can be, my advice would be to respect the following order of preference for color formats:
+In order to make colors as simple as they can be, respect the following order of preference for color formats:
 
 1. Hexadecimal notation. Preferably lowercase and shortened when possible.
 1. [RGB notation](http://en.wikipedia.org/wiki/RGB_color_model);
@@ -513,39 +511,39 @@ Hexadecimal notation is the most traditional way of expressing colors in CSS. Si
 Beyond that, RGB is the next most commonly used means of expressing colors. HSL, while increasingly popular, offers complications because software programs such as Photoshop can express colors in the similar-but-not-quite-the-same-thing HSB notation. Lastly, no web developer I have ever met uses the CSS official "named" color keywords on a regular basis. The only one that I use ever is "white" (#fff), and even then it is preferable to define that as a variable instead of using the CSS color name.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 .foo {
-  color: #f00;
+	color: #f00;
 }
 
 // Nope
 .foo {
-  color: red;
+	color: red;
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
-When using HSL or RGB notation, always add a single space after commas (`,`) and no space between parentheses (`(`, `)`) and content.
+When using HSL or RGB notation, always add a single space after commas (`,`) and a single space between parentheses (`(`, `)`) and content.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 .foo {
-  color: rgba(0, 0, 0, 0.1);
-  background: hsl(300, 100%, 100%);
+	color: rgba( 0, 0, 0, 0.1 );
+	background: hsl( 300, 100%, 100% );
 }
 
 // Nope
 .foo {
-  color: rgba(0,0,0,0.1);
-  background: hsl( 300, 100%, 100% );
+	color: rgba(0,0,0,0.1);
+	background: hsl(300, 100%, 100%);
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -555,21 +553,21 @@ When using HSL or RGB notation, always add a single space after commas (`,`) and
 When using a color more than once, store it in a variable with a meaningful name representing the color.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 $sass-pink: #c69;
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 At this point, you are free to use this variable wherever you want. However, if your usage is strongly tied to a theme, I would advise against using the variable as is. Instead, store it in another variable with a name explaining how it should be used.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 $main-theme-color: $sass-pink;
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 Doing this would prevent a theme change leading to something like `$sass-pink: blue`.
@@ -587,14 +585,14 @@ The thing is, those functions often do not provide the expected result. On the o
 The benefit of using `mix` rather than one of the two aforementioned functions is that it will progressively go to black (or white) as you decrease the proportion of the color, whereas `darken` and `lighten` will quickly blow out a color all the way to black or white.
 
 <figure>
-  <img src="/sass-guidelines/assets/images/lighten-darken-mix.png" alt="Illustration of the difference between lighten/darken and mix Sass functions" />
-  <figcaption>Illustration of the difference between <code>lighten</code>/<code>darken</code> and <code>mix</code> by <a href="http://codepen.io/KatieK2/pen/tejhz/" target="_blank">KatieK</a></figcaption>
+	<img src="/sass-guidelines/assets/images/lighten-darken-mix.png" alt="Illustration of the difference between lighten/darken and mix Sass functions" />
+	<figcaption>Illustration of the difference between <code>lighten</code>/<code>darken</code> and <code>mix</code> by <a href="http://codepen.io/KatieK2/pen/tejhz/" target="_blank">KatieK</a></figcaption>
 </figure>
 
 If you don't want to write the `mix` function every time, you can create two easy-to-use functions `tint` and `shade` (which are also a part of [Compass](http://compass-style.org/reference/compass/helpers/colors/#shade)) to do the same thing:
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 /// Slightly lighten a color
 /// @access public
@@ -602,7 +600,7 @@ If you don't want to write the `mix` function every time, you can create two eas
 /// @param {Number} $percentage - percentage of `$color` in returned color
 /// @return {Color}
 @function tint($color, $percentage) {
-  @return mix($color, white, $percentage);
+	@return mix($color, white, $percentage);
 }
 
 /// Slightly darken a color
@@ -611,26 +609,26 @@ If you don't want to write the `mix` function every time, you can create two eas
 /// @param {Number} $percentage - percentage of `$color` in returned color
 /// @return {Color}
 @function shade($color, $percentage) {
-  @return mix($color, black, $percentage);
+	@return mix($color, black, $percentage);
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 <div class="note">
-  <p>The <a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#scale_color-instance_method"><code>scale-color</code></a> function is designed to scale properties more fluidly by taking into account how high or low they already are. It should provide results that are as nice as <code>mix</code>'s but with a clearer calling convention. The scaling factor isn't exactly the same though.</p>
+	<p>The <a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#scale_color-instance_method"><code>scale-color</code></a> function is designed to scale properties more fluidly by taking into account how high or low they already are. It should provide results that are as nice as <code>mix</code>'s but with a clearer calling convention. The scaling factor isn't exactly the same though.</p>
 </div>
 
 
 
 ### Further reading
 
+* [The Perfect Sunset, Part I: Better Colors With Sass](http://revoltpuppy.com/articles/39)
 * [A Visual Guide to Sass & Compass Color Functions](http://jackiebalzer.com/color)
 * [How to Programmatically Go From One Color to Another](http://thesassway.com/advanced/how-to-programtically-go-from-one-color-to-another-in-sass)
 * [Sass Color Variables That Don't Suck](http://davidwalsh.name/sass-color-variables-dont-suck)
 * [Using Sass to Build Color Palettes](http://www.sitepoint.com/using-sass-build-color-palettes/)
 * [Dealing with Color Schemes in Sass](http://www.sitepoint.com/dealing-color-schemes-sass/)
-* [The Perfect Sunset, Part I: Better Colors With Sass](http://revoltpuppy.com/articles/39)
 
 
 
@@ -643,22 +641,29 @@ Lists are the Sass equivalent of arrays. A list is a flat data structure (unlike
 
 Lists should respect the following guidelines:
 
-* unless it is too long to fit on a 80-characters line, always display it on a single line;
+* each list item should be on its own line;
 * unless it is used as is for CSS purposes, always use comma as a delimiter;
-* unless it is empty or nested within another list, never write the parenthesis;
+* always enclose the list in parentheses;
 * never add a trailing comma.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
+$font-stack: (
+	"Helvetica",
+	"Arial",
+	sans-serif
+);
+
+// Nope
 $font-stack: "Helvetica", "Arial", sans-serif;
 
 // Nope
 $font-stack:
-  "Helvetica",
-  "Arial",
-  sans-serif;
+	"Helvetica",
+	"Arial",
+	sans-serif;
 
 // Nope
 $font-stack: 'Helvetica' 'Arial' sans-serif;
@@ -669,13 +674,13 @@ $font-stack: ('Helvetica', 'Arial', sans-serif);
 // Nope
 $font-stack: ('Helvetica', 'Arial', sans-serif,);
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 When adding new items to a list, always use the provided API. Do not attempt to add new items manually.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 $shadows: 0 42px 13.37px hotpink;
 
@@ -685,7 +690,7 @@ $shadows: append($shadows, $shadow, comma);
 // Nope
 $shadows: $shadows, $shadow;
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -701,7 +706,7 @@ $shadows: $shadows, $shadow;
 
 ## Maps
 
-Since Sass 3.3, stylesheets authors can define maps which is the Sass term for associative arrays, hashes or even JavaScript objects. A map is a data structure mapping keys (that can be any data type, including maps although I wouldn't recommend it) to values of any type.
+Since Sass 3.3, stylesheets authors can define maps which is the Sass term for associative arrays or hashes. A map is a data structure mapping keys (that can be any data type, including maps although I wouldn't recommend it) to values of any type.
 
 Maps should be written as follows:
 
@@ -717,19 +722,19 @@ Maps should be written as follows:
 Illustration:
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 $breakpoints: (
-  'small': 767px,
-  'medium': 992px,
-  'large': 1200px,
+	"small": 767px,
+	"medium": 992px,
+	"large": 1200px,
 );
 
 // Nope
 $breakpoints: ( small: 767px, medium: 992px, large: 1200px );
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -739,48 +744,48 @@ $breakpoints: ( small: 767px, medium: 992px, large: 1200px );
 If you ever find yourself lost, wondering what kind of crazy magic is happening in a Sass map, worry not because there is still a way to be saved.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 @mixin debug-map($map) {
-  @at-root {
+	@at-root {
 	@debug-map {
-	  __toString__: inspect($map);
-	  __length__: length($map);
-	  __depth__: if(function-exists('map-depth'), map-depth($map), null);
-	  __keys__: map-keys($map);
-	  __properties__ {
+		__toString__: inspect($map);
+		__length__: length($map);
+		__depth__: if(function-exists('map-depth'), map-depth($map), null);
+		__keys__: map-keys($map);
+		__properties__ {
 		@each $key, $value in $map {
-		  #{'(' + type-of($value) + ') ' + $key}: inspect($value);
+			#{'(' + type-of($value) + ') ' + $key}: inspect($value);
 		}
-	  }
+		}
 	}
-  }
+	}
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 If you are interested in knowing the depth of the map, add the following function as well. The mixin will display it automatically.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 /// Compute the maximum depth of a map
 /// @param {Map} $map
 /// @return {Number} max depth of `$map`
 @function map-depth($map) {
-  $level: 1;
+	$level: 1;
 
-  @each $key, $value in $map {
+	@each $key, $value in $map {
 	@if type-of($value) == 'map' {
-	  $level: max(map-depth($value) + 1, $level);
+		$level: max(map-depth($value) + 1, $level);
 	}
-  }
+	}
 
-  @return $level;
+	@return $level;
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -803,9 +808,9 @@ If you are interested in knowing the depth of the map, add the following functio
 
 ## CSS Ruleset
 
-At this point, this is mostly revising what everybody knows, but here is how a CSS ruleset should be written (at least, according to most guidelines, including [CSS Guidelines](http://cssguidelin.es/#anatomy-of-a-ruleset)):
+Here is how a CSS ruleset should be written at RP3:
 
-* related selectors on the same line; unrelated selectors on new lines;
+* selectors on new lines;
 * the opening brace (`{`) spaced from the last selector by a single space;
 * each declaration on its own new line;
 * a space after the colon (`:`);
@@ -816,59 +821,63 @@ At this point, this is mostly revising what everybody knows, but here is how a C
 Illustration:
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
-.foo, .foo-bar,
-.baz {
-  display: block;
-  overflow: hidden;
-  margin: 0 auto;
+.baz,
+.foo,
+.foo-bar {
+	display: block;
+	margin: 0 auto;
+	overflow: hidden;
 }
 
 // Nope
 .foo,
 .foo-bar, .baz {
 	display: block;
-	overflow: hidden;
 	margin: 0 auto }
+	overflow: hidden;
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 Adding to those CSS-related guidelines, we want to pay attention to:
 
 * local variables being declared before any declarations, then spaced from declarations by a new line;
-* mixin calls with no `@content` coming before any declaration;
+* extend calls coming before any declaration;
+* mixin calls coming after all declarations;
+* mixin calls with `@content` coming after all declarations, then spaced from declarations by a new line;
 * nested selectors always coming after a new line;
-* mixin calls with `@content` coming after any nested selector;
 * no new line before a closing brace (`}`).
 
 Illustration:
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
-.foo, .foo-bar,
-.baz {
-  $length: 42em;
+.baz,
+.foo,
+.foo-bar {
+	$length: 42em;
 
-  @include ellipsis;
-  @include size($length);
-  display: block;
-  overflow: hidden;
-  margin: 0 auto;
+	@extend %clearfix;
+	display: block;
+	margin: 0 auto;
+	overflow: hidden;
+	@include ellipsis;
+	@include size($length);
 
-  &:hover {
-	color: red;
-  }
+	@include respond-to('small') {
+		overflow: visible;
+	}
 
-  @include respond-to('small') {
-	overflow: visible;
-  }
+	&:hover {
+		color: red;
+	}
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -889,89 +898,34 @@ I cannot think of many topics where opinions are as divided as they are regardin
 * sticking to the alphabetical order;
 * ordering declarations by type (position, display, colors, font, miscellaneous...).
 
-There are pros and cons for both ways. On one hand, alphabetical order is universal (at least for languages using the latin alphabet) so there is no argument about sorting one property before another. However, it seems extremely weird to me to see properties such as `bottom` and `top` not right next to each other. Why animations should appear before the display type? There are a lot of oddities with alphabet ordering.
+There are pros and cons for both ways. On one hand, alphabetical order is universal (at least for languages using the latin alphabet) so there is no argument about sorting one property before another. However, it makes some logical sense to group like-properties together.
+
+The problem with the like-properties together method is how to determine which properties are related. Are `color` and `background-color` related? Where do border properties fit in? What determines which group of properties goes to the top?
+
+At RP3, we will sort CSS properties strictly alphabetically. This includes extend and mixin calls when there are multiple calls (keeping in mind, as stated above, extend calls come before regular property declarations, and mixin calls come after).
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 .foo {
-  background: black;
-  bottom: 0;
-  color: white;
-  font-weight: bold;
-  font-size: 1.5em;
-  height: 100px;
-  overflow: hidden;
-  position: absolute;
-  right: 0;
-  width: 100px;
+	background-color: $black;
+	bottom: 0;
+	color: $white;
+	font-weight: bold;
+	font-size: 1.5em;
+	height: 100px;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	width: 100px;
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
-
-On the other hand, ordering properties by type makes perfect sense. Every font-related declarations are gathered, `top` and `bottom` are reunited and reading a ruleset kind of feels like reading a short story. But unless you stick to some conventions like [Idiomatic CSS](https://github.com/necolas/idiomatic-css), there is a lot of room for interpretation in this way of doing. Where would `white-space` go: font or display? Where does belong `overflow` exactly? What is the property order within a group (it could be alphabetically, oh the irony)?
-
-<div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
-{% highlight scss %}
-.foo {
-  height: 100px;
-  width: 100px;
-  overflow: hidden;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background: black;
-  color: white;
-  font-weight: bold;
-  font-size: 1.5em;
-}
-{% endhighlight %}
-  </div>
-</div>
-
-There is also another interesting subtree of type ordering called [Concentric CSS](https://github.com/brandon-rhodes/Concentric-CSS), that seems to be quite popular as well. Basically, Concentric CSS relies on the box-model to define an order: starts outside, moves inward.
-
-<div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
-{% highlight scss %}
-.foo {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background: black;
-  overflow: hidden;
-  color: white;
-  font-weight: bold;
-  font-size: 1.5em;
-}
-{% endhighlight %}
-  </div>
-</div>
-
-I must say I cannot decide myself. A [recent poll on CSS-Tricks](http://css-tricks.com/poll-results-how-do-you-order-your-css-properties/) determined that over 45% developers order their declarations by type against 14% alphabetically. Also, there are 39% that go full random, including myself.
-
-<figure>
-  <img src="/sass-guidelines/assets/images/css_order_chart.png" alt="" />
-  <figcaption>Chart showing how developers order their CSS declarations</figcaption>
-</figure>
-
-Because of this, I will not impose a choice in this styleguide. Pick the one you prefer, as long as you are consistent throughout your stylesheets.
-
-<div class="note">
-  <p>A <a href="http://peteschuster.com/2014/12/reduce-file-size-css-sorting/">recent study</a> shows that using <a href="https://github.com/csscomb/csscomb.js">CSS Comb</a> (which uses <a href="https://github.com/csscomb/csscomb.js/blob/master/config/csscomb.json">type ordering</a>) for sorting CSS declarations ends up shortening the average file size under Gzip compression by 2.7%, compared to 1.3% when sorting alphabetically.</p>
-</div>
-
-
 
 ### Further reading
 
 * [CSS Comb](https://github.com/csscomb/csscomb.js)
-* [Concentric CSS](https://github.com/brandon-rhodes/Concentric-CSS)
-* [Idiomatic CSS](https://github.com/necolas/idiomatic-css)
 * [On Declaration Sorting](http://meiert.com/en/blog/20140924/on-declaration-sorting/)
 * [Reduce File Size With CSS Sorting](http://peteschuster.com/2014/12/reduce-file-size-css-sorting/)
 * [Poll Results: How Do You Order Your CSS Properties?](http://css-tricks.com/poll-results-how-do-you-order-your-css-properties/)
@@ -986,84 +940,58 @@ Because of this, I will not impose a choice in this styleguide. Pick the one you
 One particular feature Sass provides that is being overly misused by many developers is *selector nesting*. Selector nesting offers a way for stylesheet authors to compute long selectors by nesting shorter selectors within each other. For instance, the following Sass nesting:
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 .foo {
-  .bar {
-	&:hover {
-	  color: red;
+	.bar {
+		&:hover {
+			color: red;
+		}
 	}
-  }
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 ... will generate this CSS:
 
 {% highlight css %}
 .foo .bar:hover {
-  color: red;
+	color: red;
 }
 {% endhighlight %}
 
 Along the same lines, since Sass 3.3 it is possible to use the current selector reference (`&`) to generate advanced selectors. For instance:
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 .foo {
-  &-bar {
-	color: red;
-  }
+	&-bar {
+		color: red;
+	}
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 ... will generate this CSS:
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 .foo-bar {
-  color: red;
+	color: red;
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 This method is often used along with [BEM naming conventions](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) to generate `.block__element` and `.block--modifier` selectors based on the original selector (i.e. `.block` in this case).
 
-<div class="note">
-  <p>While it might be anecdotal, generating new selectors from the current selector reference (<code>&</code>) makes those selectors unsearchable in the codebase since they do not exist per se.</p>
-</div>
-
 The problem with selector nesting is it ultimately makes code more difficult to read. One has to mentally compute the resulting selector out of the indentation levels; it is not always quite obvious what the CSS will end up being.
 
 This statement becomes truer as selectors get longer and references to the current selector (`&`) more frequent. At some point, the risk of losing track and not being able to understand what's going on anymore is so high that it is not worth it.
-
-To prevent such a situation, we **avoid selector nesting except for pseudo-classes and pseudo-elements**. These are the only cases where nesting is allowed, and even recommended.
-
-<div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
-{% highlight scss %}
-.foo {
-  color: red;
-
-  &:hover {
-	color: green;
-  }
-
-  &::before {
-	content: 'pseudo-element';
-  }
-}
-{% endhighlight %}
-  </div>
-</div>
-
-Using selector nesting for pseudo-classes and pseudo-elements not only makes sense (because it deals with closely related selectors), it also helps keep everything about a component at the same place.
 
 
 
@@ -1098,19 +1026,19 @@ Sass placeholders are deliberately omitted from this list since they can be cons
 Regarding variables, functions and mixins, we stick to something very *CSS-y*: **lowercase hyphen-delimited**, and above all meaningful.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 $vertical-rhythm-baseline: 1.5rem;
 
 @mixin size($width, $height: $width) {
-  // ...
+	// ...
 }
 
 @function opposite-direction($direction) {
-  // ...
+	// ...
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -1131,7 +1059,7 @@ If you happen to be a framework developer or library writer, you might find your
 As for many languages, I suggest all-caps snakerized variables when they are constants. Not only is this a very old convention, but it also constrats well with usual lowercased hyphenated variables.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 $CSS_POSITIONS: top, right, bottom, left, center;
@@ -1139,7 +1067,7 @@ $CSS_POSITIONS: top, right, bottom, left, center;
 // Nope
 $css-positions: top, right, bottom, left, center;
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -1160,19 +1088,19 @@ If you intend to distribute your Sass code, in the case of a library, a framewor
 For instance, if you work on a *Sassy Unicorn* project that is meant to be used by developers all over the world (who wouldn't, right?), you could consider using `su-` as a namespace. It is specific enough to prevent any naming collisions and short enough not to be a pain to write.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 $su-configuration: ( ... );
 
 @function su-rainbow($unicorn) {
-  // ...
+	// ...
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 <div class="note">
-  <p>Note that automatic namespacing is definitely a design goal for the upcoming <code>@import</code> revamp from Sass 4.0. As that comes closer to fruition, it will become less and less useful to do manual namespacing; eventually, manually-namespaced libraries may actually be harder to use.</p>
+	<p>Note that automatic namespacing is definitely a design goal for the upcoming <code>@import</code> revamp from Sass 4.0. As that comes closer to fruition, it will become less and less useful to do manual namespacing; eventually, manually-namespaced libraries may actually be harder to use.</p>
 </div>
 
 ### Further reading
@@ -1214,7 +1142,7 @@ And I probably forgot a lot of other various reasons as well. Commenting takes v
 Ideally, *any* CSS ruleset should be preceded by a C-style comment explaining the point of the CSS block. This comment also hosts numbered explanations regarding specific parts of the ruleset. For instance:
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 /**
  * Helper class to truncate and add ellipsis to a string too long for it to fit
@@ -1223,12 +1151,12 @@ Ideally, *any* CSS ruleset should be preceded by a C-style comment explaining th
  * 2. Add ellipsis at the end of the line.
  */
 .ellipsis {
-  white-space: nowrap; /* 1 */
-  text-overflow: ellipsis; /* 2 */
-  overflow: hidden;
+	white-space: nowrap; /* 1 */
+	text-overflow: ellipsis; /* 2 */
+	overflow: hidden;
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 Basically everything that is not obvious at first glance should be commented. There is no such thing as too much documentation. Remember that you cannot *comment too much*, so get on fire and write comments for everything that is worth it.
@@ -1236,13 +1164,13 @@ Basically everything that is not obvious at first glance should be commented. Th
 When commenting a Sass-specific section, use Sass inline comments instead of a C-style block. This makes the comment invisible in the output, even in expanded mode during development.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Add current module to the list of imported modules.
 // `!global` flag is required so it actually updates the global variable.
 $imported-modules: append($imported-modules, $module) !global;
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -1250,8 +1178,6 @@ $imported-modules: append($imported-modules, $module) !global;
 ### Further reading
 
 * [CSS Guidelines' Commenting section](http://cssguidelin.es/#commenting)
-
-{% include donate.html %}
 
 
 
@@ -1265,7 +1191,7 @@ Every variable, function, mixin and placeholder that is intended to be reused al
 SassDoc provides two different syntaxes for comments: either C-style or inline. For instance, both of the following snippets are valid SassDoc comments:
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 /**
  * Vertical rhythm baseline used all over the code base.
@@ -1273,24 +1199,24 @@ SassDoc provides two different syntaxes for comments: either C-style or inline. 
  */
 $vertical-rhythm-baseline: 1.5rem;
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 /// Vertical rhythm baseline used all over the code base.
 /// @type Length
 $vertical-rhythm-baseline: 1.5rem;
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 <div class="note">
-  <p>Three slashes (<code>/</code>) required.</p>
+	<p>Three slashes (<code>/</code>) required.</p>
 </div>
 
-There is no benefit in using one over the other, so pick the one you feel the most confident with.
+At RP3, we use the C-style documentation syntax.
 
 SassDoc has two major roles:
 
@@ -1305,7 +1231,7 @@ SassDoc has two major roles:
 Here is an example of a mixin extensively documented with SassDoc:
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 /// Mixin helping defining both `width` and `height` simultaneously.
 ///
@@ -1336,13 +1262,15 @@ Here is an example of a mixin extensively documented with SassDoc:
 ///   height: 10em;
 /// }
 @mixin size($width, $height: $width) {
-  width: $width;
-  height: $height;
+	width: $width;
+	height: $height;
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
+
+At RP3, we have not used SassDoc or generated API documentation to any extent, but as our library of completed projects grows allowing for reuse of Sass functions and mixins between projects, and as our team of our developers continues to grow, we will begin using SassDoc more extensively.
 
 
 ### Further reading
@@ -1371,11 +1299,7 @@ On top of that, I cannot stress enough the need for folders, even on small scale
 
 There are a lot of popular architectures for CSS projects: [OOCSS](http://oocss.org/), [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/), [Bootstrap](http://getbootstrap.com/)-like, [Foundation](http://foundation.zurb.com/)-like... They all have their merits, pros and cons.
 
-I, myself, use an approach that happens to be quite similar to [SMACSS](https://smacss.com/) from [Jonathan Snook](http://snook.ca/), which focuses on keeping things simple and obvious.
-
-<div class="note">
-  <p>I have learnt that architecture is most of the time very specific to the project. Feel free to discard completely or adapt the proposed solution so that you deal with a system that suits your needs.</p>
-</div>
+At RP3, we are using the [BEM](http://en.bem.info) (Block, Element, Modifier) methodology for structuring our CSS.
 
 
 
@@ -1412,9 +1336,13 @@ Most of any interface can be thought of as little components and I highly recomm
 
 
 
-## The 7-1 pattern
+## Directory Structure
 
-Back to architecture, shall we? I usually go with what I call the *7-1 pattern*: 7 folders, 1 file. Basically, you have all your partials stuffed into 7 different folders, and a single file at the root level (usually named `main.scss`) which imports them all to be compiled into a CSS stylesheet.
+This area is under development.
+
+<!--
+
+Back to architecture, shall we? I usually go with what I call the *7-1 pattern*: 7 folders, 1 file. Basically, you have all your partials stuffed into 7 different folders, and a single file at the root level (usually named `project-name.scss`) which imports them all to be compiled into a CSS stylesheet.
 
 * `base/`
 * `components/`
@@ -1426,11 +1354,11 @@ Back to architecture, shall we? I usually go with what I call the *7-1 pattern*:
 
 And of course:
 
-* `main.scss`
+* `project-name.scss`
 
 <figure>
-  <img src="/sass-guidelines/assets/images/sass-wallpaper.jpg" alt="" />
-  <figcaption>Wallpaper by <a href="https://twitter.com/julien_he">Julien He</a></figcaption>
+	<img src="/sass-guidelines/assets/images/sass-wallpaper.jpg" alt="" />
+	<figcaption>Wallpaper by <a href="https://twitter.com/julien_he">Julien He</a></figcaption>
 </figure>
 
 Ideally, we can come up with something like this:
@@ -1439,7 +1367,7 @@ Ideally, we can come up with something like this:
 sass/
 |
 |– base/
-|   |– _reset.scss       # Reset/normalize
+|   |– _reset.scss       # Reset
 |   |– _typography.scss  # Typography rules
 |   ...                  # Etc…
 |
@@ -1481,11 +1409,11 @@ sass/
 |   ...                  # Etc…
 |
 |
-`– main.scss             # primary Sass file
+`– project-name.scss             # primary Sass file
 </code></pre></div>
 
 <div class="note">
-  <p>Files follow the same naming conventions described above: they are hyphen-delimited.</p>
+	<p>Files follow the same naming conventions described above: they are hyphen-delimited.</p>
 </div>
 
 
@@ -1512,7 +1440,7 @@ The `layout/` folder contains everything that takes part in laying out the site 
 * `_navigation.scss`
 
 <div class="note">
-  <p>The <code>layout/</code> folder might also be called <code>partials/</code>, depending on what you prefer.</p>
+	<p>The <code>layout/</code> folder might also be called <code>partials/</code>, depending on what you prefer.</p>
 </div>
 
 
@@ -1526,7 +1454,7 @@ For smaller components, there is the `components/` folder. While `layout/` is *m
 * `_thumbnails.scss`
 
 <div class="note">
-  <p>The <code>components/</code> folder might also be called <code>modules/</code>, depending on what you prefer.</p>
+	<p>The <code>components/</code> folder might also be called <code>modules/</code>, depending on what you prefer.</p>
 </div>
 
 
@@ -1539,7 +1467,7 @@ If you have page-specific styles, it is better to put them in a `pages/` folder,
 * `_contact.scss`
 
 <div class="note">
-  <p>Depending on your deployment process, these files could be called on their own to avoid merging them with the others in the resulting stylesheet. It is really up to you.</p>
+	<p>Depending on your deployment process, these files could be called on their own to avoid merging them with the others in the resulting stylesheet. It is really up to you.</p>
 </div>
 
 
@@ -1552,7 +1480,7 @@ On large sites and applications, it is not unusual to have different themes. The
 * `_admin.scss`
 
 <div class="note">
-  <p>This is very project-specific and is likely to be non-existent on many projects.</p>
+	<p>This is very project-specific and is likely to be non-existent on many projects.</p>
 </div>
 
 
@@ -1569,7 +1497,7 @@ The rule of thumb for this folder is that it should not output a single line of 
 * `_placeholders.scss` (frequently named `_helpers.scss`)
 
 <div class="note">
-  <p>The <code>utils/</code> folder might also be called <code>helpers/</code>, <code>sass-helpers/</code> or <code>sass-utils/</code>, depending on what you prefer.</p>
+	<p>The <code>utils/</code> folder might also be called <code>helpers/</code>, <code>sass-helpers/</code> or <code>sass-utils/</code>, depending on what you prefer.</p>
 </div>
 
 
@@ -1612,7 +1540,7 @@ In order to preserve readability, the main file should respect these guidelines:
 * file extensions and leading underscores omitted.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 @import 'vendors/bootstrap';
 @import 'vendors/jquery-ui';
@@ -1643,7 +1571,7 @@ In order to preserve readability, the main file should respect these guidelines:
 @import 'themes/theme';
 @import 'themes/admin';
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 There is another way of importing partials that I deem valid as well. On the bright side, it makes the file more readable. On the other hand, it makes updating it slightly more painful. Anyway, I'll let you decide which is best, it does not matter much. For this way of doing, the main file should respect these guidelines:
@@ -1655,90 +1583,53 @@ There is another way of importing partials that I deem valid as well. On the bri
 * file extensions and leading underscores omitted.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 @import
-  'vendors/bootstrap',
-  'vendors/jquery-ui';
+	'vendors/bootstrap',
+	'vendors/jquery-ui';
 
 @import
-  'utils/variables',
-  'utils/functions',
-  'utils/mixins',
-  'utils/placeholders';
+	'utils/variables',
+	'utils/functions',
+	'utils/mixins',
+	'utils/placeholders';
 
 @import
-  'base/reset',
-  'base/typography';
+	'base/reset',
+	'base/typography';
 
 @import
-  'layout/navigation',
-  'layout/grid',
-  'layout/header',
-  'layout/footer',
-  'layout/sidebar',
-  'layout/forms';
+	'layout/navigation',
+	'layout/grid',
+	'layout/header',
+	'layout/footer',
+	'layout/sidebar',
+	'layout/forms';
 
 @import
-  'components/buttons',
-  'components/carousel',
-  'components/cover',
-  'components/dropdown';
+	'components/buttons',
+	'components/carousel',
+	'components/cover',
+	'components/dropdown';
 
 @import
-  'pages/home',
-  'pages/contact';
+	'pages/home',
+	'pages/contact';
 
 @import
-  'themes/theme',
-  'themes/admin';
+	'themes/theme',
+	'themes/admin';
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 <div class="note">
-  <p>In order to not have to import each file manually, there is an extension to Ruby Sass called <a href="https://github.com/chriseppstein/sass-globbing">sass-globbing</a>, making it possible to use glob patterns in Sass <code>@import</code> such as <code>@import "components/*"</code>.</p>
-  <p>That being said, I would not recommend it because it imports files following the alphabetical order which is usually not what you want, especially when dealing with a source-order dependent language.</p>
+	<p>In order to not have to import each file manually, there is an extension to Ruby Sass called <a href="https://github.com/chriseppstein/sass-globbing">sass-globbing</a>, making it possible to use glob patterns in Sass <code>@import</code> such as <code>@import "components/*"</code>.</p>
+	<p>That being said, I would not recommend it because it imports files following the alphabetical order which is usually not what you want, especially when dealing with a source-order dependent language.</p>
 </div>
 
-
-
-
-
-
-## Shame file
-
-There is an interesting concept that has been made popular by [Harry Roberts](http://csswizardry.com), [Dave Rupert](http://daverupert.com) and [Chris Coyier](http://css-tricks.com) that consists of putting all the CSS declarations, hacks and things we are not proud about in a *shame file*. This file, dramatically titled `_shame.scss`, would be imported after any other file, at the very end of the stylesheet.
-
-<div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
-{% highlight scss %}
-/**
- * Nav specificity fix.
- *
- * Someone used an ID in the header code (`#header a {}`) which trumps the
- * nav selectors (`.site-nav a {}`). Use !important to override it until I
- * have time to refactor the header stuff.
- */
-.site-nav a {
-	color: #BADA55 !important;
-}
-{% endhighlight %}
-  </div>
-</div>
-
-
-
-### Further reading
-
-* [shame.css](http://csswizardry.com/2013/04/shame-css/)
-* [shame.css - full .net interview](http://csswizardry.com/2013/04/shame-css-full-net-interview/)
-
-
-
-
-
-
+-->
 
 
 
@@ -1755,43 +1646,31 @@ I do not think we still have to introduce Responsive Web Design now that it is e
 
 ## Naming breakpoints
 
-I think it is safe to say that media queries should not be tied to specific devices. For instance, this is definitely a bad idea to try targeting iPads or Blackberry phones specifically. Media queries should take care of a range of screen sizes, until the design breaks and the next media query takes over.
+Media queries should not be tied to specific devices. For instance, this is definitely a bad idea to try targeting iPads or Blackberry phones specifically. Media queries should take care of a range of screen sizes, until the design breaks and the next media query takes over.
 
 For the same reasons, breakpoints should not be named after devices but something more general. Especially since some phones are now bigger than tablets, some tablets bigger than some tiny screen computers, and so on...
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 $breakpoints: (
-  'medium': (min-width: 800px),
-  'large': (min-width: 1000px),
-  'huge': (min-width: 1200px),
+	"medium": 680px,
+	"large": 1000px,
+	"xlarge": 1200px,
 );
 
 // Nope
 $breakpoints: (
-  'tablet': (min-width: 800px),
-  'computer': (min-width: 1000px),
-  'tv': (min-width: 1200px),
+	"tablet": 680px,
+	"computer": 1000px,
+	"tv": 1200px,
 );
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 At this point, any naming convention that makes crystal clear that a design is not intimately tied to a specific device type will do the trick, as long as it gives a sense of magnitude.
-
-<div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
-{% highlight scss %}
-$breakpoints: (
-  'seed': (min-width: 800px),
-  'sprout': (min-width: 1000px),
-  'plant': (min-width: 1200px),
-);
-{% endhighlight %}
-  </div>
-</div>
 
 
 
@@ -1807,30 +1686,7 @@ $breakpoints: (
 
 ## Breakpoint manager
 
-Once you have named your breakpoints the way you want, you need a way to use them in actual media queries. There are plenty of ways to do so but I must say I am a big fan of the breakpoint map read by a getter function. This system is both simple and efficient.
-
-<div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
-{% highlight scss %}
-/// Responsive manager.
-/// @access public
-/// @param {String} $breakpoint - Breakpoint
-/// @requires $breakpoints
-@mixin respond-to($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-	@media #{inspect(map-get($breakpoints, $breakpoint))} {
-	  @content;
-	}
-  }
-
-  @else {
-	@error 'No value found for `#{$breakpoint}`. '
-		 + 'Please make sure it is defined in `$breakpoints` map.';
-  }
-}
-{% endhighlight %}
-  </div>
-</div>
+RP3 uses the [Breakpoint](http://breakpoint-sass.com) library to create media queries in our projects. Always use em-based media queries by setting the variable `$breakpoint-to-ems: true` in the `_settings.scss` partial in your project.
 
 
 
@@ -1849,30 +1705,30 @@ Once you have named your breakpoints the way you want, you need a way to use the
 Not so long ago, there has been a quite hot debate about where should be written media queries: should they belong within selectors (as Sass allows it) or strictly dissociated from them? I have to say I am a fervent defender of the *media-queries-within-selectors* system, as I think it plays well with the ideas of *components*.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 .foo {
-  color: red;
+	color: red;
 
-  @include respond-to('small') {
-	color: blue;
-  }
+	@include respond-to('small') {
+		color: blue;
+	}
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 Leading to the following CSS output:
 
 {% highlight css %}
 .foo {
-  color: red;
+	color: red;
 }
 
 @media (max-width: 800px) {
-  .foo {
-	color: blue;
-  }
+	.foo {
+		color: blue;
+	}
 }
 {% endhighlight %}
 
@@ -1929,7 +1785,7 @@ The docs talk about *global variable shadowing*. When declaring a variable that 
 The following code snippet explains the *variable shadowing* concept.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Initialize a global variable at root level.
 // In this case, the `!global` flag is optional.
@@ -1937,64 +1793,31 @@ $variable: 'initial value' !global;
 
 // Create a mixin that overrides that global variable.
 @mixin global-variable-overriding {
-  $variable: 'mixin value' !global;
+	$variable: 'mixin value' !global;
 }
 
 .local-scope {
-  // Create a local variable that shadows the global one.
-  $variable: 'local value';
+	// Create a local variable that shadows the global one.
+	$variable: 'local value';
 
-  // Include the mixin: it overrides the global variable.
-  @include global-variable-overriding;
+	// Include the mixin: it overrides the global variable.
+	@include global-variable-overriding;
 
-  // Print the variable's value.
-  // It is the **local** one, since it shadows the global one.
-  content: $variable;
+	// Print the variable's value.
+	// It is the **local** one, since it shadows the global one.
+	content: $variable;
 }
 
 // Print the variable in another selector that does no shadowing.
 // It is the **global** one, as expected.
 .other-local-scope {
-  content: $variable;
+	content: $variable;
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
-{% include donate.html %}
 
-
-
-
-
-
-## `!default` flag
-
-When building a library, a framework, a grid system or any piece of Sass that is intended to be distributed and used by external developers, all configuration variables should be defined with the `!default` flag so they can be overwritten.
-
-<div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
-{% highlight scss %}
-$baseline: 1em !default;
-{% endhighlight %}
-  </div>
-</div>
-
-Thanks to this, a developer can define his own `$baseline` variable *before* importing your library without seeing his value redefined.
-
-<div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
-{% highlight scss %}
-// Developer's own variable
-$baseline: 2em;
-
-// Your library declaring `$baseline`
-@import 'your-library';
-
-// $baseline == 2em;
-{% endhighlight %}
-  </div>
-</div>
 
 
 
@@ -2006,7 +1829,7 @@ $baseline: 2em;
 The `!global` flag should only be used when overriding a global variable from a local scope. When defining a variable at root level, the `!global` flag should be omitted.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
 $baseline: 2em;
@@ -2014,7 +1837,7 @@ $baseline: 2em;
 // Nope
 $baseline: 2em !global;
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -2029,7 +1852,7 @@ There are advantages of using maps rather than multiple distinct variables. The 
 Another pro of using a map is the ability to create a little getter function to provide a friendlier API. For instance, consider the following Sass code:
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 /// Z-indexes map, gathering all Z layers of the application
 /// @access private
@@ -2037,10 +1860,10 @@ Another pro of using a map is the ability to create a little getter function to 
 /// @prop {String} key - Layer's name
 /// @prop {Number} value - Z value mapped to the key
 $z-indexes: (
-  'modal': 5000,
-  'dropdown': 4000,
-  'default': 1,
-  'below': -1,
+	'modal': 5000,
+	'dropdown': 4000,
+	'default': 1,
+	'below': -1,
 );
 
 /// Get a z-index value from a layer name
@@ -2049,10 +1872,10 @@ $z-indexes: (
 /// @return {Number}
 /// @require $z-indexes
 @function z($layer) {
-  @return map-get($z-indexes, $layer);
+	@return map-get($z-indexes, $layer);
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -2069,60 +1892,34 @@ $z-indexes: (
 
 The `@extend` directive has to be one of the features that made Sass so popular a couple of years ago. As a reminder, it makes it possible to tell Sass to style an element A exactly as though it also matched selector B. Needless to say this can end up being a valuable ally when writing modular CSS.
 
-However I feel like I must warn you against this feature. As clever as it is, `@extend` still is a tricky concept that might do more harm than good, especially when poorly used. The thing is, when extending a selector, you have little to no way to answer these questions without having an in-depth knowledge of the whole codebase:
+At RP3, we use `@extend` vary sparingly, and exclusively with placeholder selectors (denoted by a `%` at the beginning of the selector name, as opposed to `.` for classes). Furthermore, `@extend` is primarily used for selectors that in pure CSS would be considered non-semantic. These include `clearfix` and `ir` (image replacement) type classes, to name two common uses. However, if you find yourself repeating a particular style pattern often, and that pattern will never require arguments to adjust the output, than it is a good candidate for `@extend`. (If it *does* require arguments, or needs to be placed inside a media query (see below), you will need to use a mixin instead.)
 
-* where is my current selector going to be appended?
-* am I likely to be causing undesired side-effects?
-* how large is the CSS generated by this single extend?
-
-For all you know, the result could range from doing nothing to causing disastrous side-effects. Because of this, my first advice would be to avoid the `@extend` directive altogether. It might sound brutal, but at the end of the day it can save you some headaches and troubles.
-
-That being said, you know the saying:
-
-> Never say never.<br>
-> &mdash; Apparently, [not Beyonce](https://github.com/HugoGiraudel/sass-guidelines/issues/31#issuecomment-69112419).
-
-There are scenarios where extending selectors might be helpful and worthwhile. Yet, always keep in mind those rules so you don't get yourself into trouble:
-
-* Use extend from within a module, not across different modules.
-* Use extend on placeholders exclusively, not on actual selectors.
-* Make sure the placeholder you extend is present as little as possible in the stylesheet.
-
-If you are going to use extend, let me also remind you that it does not play well with `@media` blocks. As you may know, Sass is unable to extend an outer selector from within a media query. When doing so, the compiler simply crashes, telling you that you cannot do such a thing. Not great. Especially since media queries are almost all we do know.
+Also, `@extend` does not play well with `@media` blocks. As you may know, Sass is unable to extend an outer selector from within a media query. When doing so, the compiler simply crashes, telling you that you cannot do such a thing. Not great. Especially since media queries are almost all we do know.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 .foo {
-  content: 'foo';
+	content: "foo";
 }
 
 @media print {
-  .bar {
-	// This doesn't work. Worse: it crashes.
-	@extend .foo;
-  }
+	.bar {
+		// This doesn't work. Worse: it crashes.
+		@extend .foo;
+	}
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 > You may not @extend an outer selector from within @media.<br>
 > You may only @extend selectors within the same directive.
 
-<div class="note">
-  <p>It is often said that <code>@extend</code> helps with the file size since it combines selectors rather than duplicated properties. That is true, however the difference is negligible once <a href="http://en.wikipedia.org/wiki/Gzip">Gzip</a> has done its compression.</p>
-  <p>That being said, if you cannot use Gzip (or any equivalent) then switching to a <code>@extend</code> approach might not be that bad as long as you know what you are doing.</p>
-</div>
-
-To sum up, I would **advise against using the `@extend` directive**, unless under some specific circumstances, but I would not go as far as to forbid it.
-
-
 
 ### Further reading
 
 * [What Nobody Told you About Sass Extend](http://www.sitepoint.com/sass-extend-nobody-told-you/)
-* [Why You Should Avoid Extend](http://www.sitepoint.com/avoid-sass-extend/)
 * [Don't Over Extend Yourself](http://pressupinc.com/blog/2014/11/dont-overextend-yourself-in-sass/)
 * [When to Use Extend; When to Use a Mixin](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
 
@@ -2151,42 +1948,7 @@ But I feel I must warn you against abusing the power of mixins. Again, the keywo
 
 ## Basics
 
-That being said, mixins are extremely useful and you should be using some. The rule of thumb is that if you happen to spot a group of CSS properties that always appear together for a reason (i.e. not a coincidence), you can put them in a mixin instead. The [micro-clearfix hack from Nicolas Gallagher](http://nicolasgallagher.com/micro-clearfix-hack/) deserves to be put in a (argumentless) mixin for instance.
-
-<div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
-{% highlight scss %}
-/// Helper to clear inner floats
-/// @author Nicolas Gallagher
-/// @link http://nicolasgallagher.com/micro-clearfix-hack/ Micro Clearfix
-@mixin clearfix {
-  &::after {
-	content: '';
-	display: table;
-	clear: both;
-  }
-}
-{% endhighlight %}
-  </div>
-</div>
-
-Another valid example would be a mixin to size an element, defining both `width` and `height` at the same time. Not only would it make the code lighter to type, but also easier to read.
-
-<div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
-{% highlight scss %}
-/// Helper to size an element
-/// @author Hugo Giraudel
-/// @param {Length} $width
-/// @param {Length} $height
-@mixin size($width, $height: $width) {
-  width: $width;
-  height: $height;
-}
-{% endhighlight %}
-  </div>
-</div>
-
+That being said, mixins are extremely useful and you should be using some. The rule of thumb is that if you happen to spot a group of CSS properties that always appear together for a reason (i.e. not a coincidence), you can put them in a mixin instead.
 
 
 ### Further reading
@@ -2205,14 +1967,14 @@ Another valid example would be a mixin to size an element, defining both `width`
 When dealing with an unknown number of arguments in a mixin, always use an `arglist` rather than a list. Think of `arglist` as the 8th hidden undocumented data type from Sass that is implicitly used when passing an arbitrary number of arguments to a mixin or a function whose signature contains `...`.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 @mixin shadows($shadows...) {
-  // type-of($shadows) == 'arglist'
-  // ...
+	// type-of($shadows) == 'arglist'
+	// ...
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 Now, when building a mixin that accepts a handful of arguments (understand 3 or more), think twice before merging them out as a list or a map thinking it will be easier than passing them all one by one.
@@ -2220,10 +1982,10 @@ Now, when building a mixin that accepts a handful of arguments (understand 3 or 
 Sass is actually pretty clever with mixins and function declarations, so much so that you can actually pass a list or a map as an arglist to a function/mixin so that it gets parsed as a series of arguments.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 @mixin dummy($a, $b, $c) {
-  // ...
+	// ...
 }
 
 // Yep
@@ -2239,13 +2001,13 @@ $params: true, 42, 'kittens';
 
 // Yep
 $params: (
-  'c': 'kittens',
-  'a': true,
-  'b': 42
+	'c': 'kittens',
+	'a': true,
+	'b': 42
 );
 @include dummy($params...);
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -2263,58 +2025,8 @@ $params: (
 
 It might be tempting to define custom mixins to handle vendor prefixes for unsupported or partially supported CSS properties. But we do not want to do this. First, if you can use [Autoprefixer](https://github.com/postcss/autoprefixer), use Autoprefixer. It will remove Sass code from your project, will always be up-to-date and will necessarily do a much better job than you at prefixing stuff.
 
-Unfortunately, Autoprefixer is not always an option. If you use either [Bourbon](http://bourbon.io/) or [Compass](http://compass-style.org/), you may already know that they both provide a collection of mixins that handle vendor prefixes for you. Use those.
+In our build process, we use `gulp-autoprefixer` to add vendor prefixes to our finished stylesheets.
 
-If you cannot use Autoprefixer and use neither Bourbon nor Compass, then and only then, you can have your own mixin for prefixing CSS properties. But. Please do not build a mixin per property, manually printing each vendor.
-
-<div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
-{% highlight scss %}
-// Nope
-@mixin transform($value) {
-  -webkit-transform: $value;
-  -moz-transform: $value;
-  transform: $value;
-}
-{% endhighlight %}
-  </div>
-</div>
-
-Do it the clever way.
-
-<div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
-{% highlight scss %}
-/// Mixin helper to output vendor prefixes
-/// @access public
-/// @author HugoGiraudel
-/// @param {String} $property - Unprefixed CSS property
-/// @param {*} $value - Raw CSS value
-/// @param {List} $prefixes - List of prefixes to output
-@mixin prefix($property, $value, $prefixes: ()) {
-  @each $prefix in $prefixes {
-	-#{$prefix}-#{$property}: $value;
-  }
-
-  #{$property}: $value;
-}
-{% endhighlight %}
-  </div>
-</div>
-
-Then using this mixin should be very straightforward:
-
-<div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
-{% highlight scss %}
-.foo {
-  @include prefix(transform, rotate(90deg), webkit ms);
-}
-{% endhighlight %}
-  </div>
-</div>
-
-Please keep in mind this is a poor solution. For instance, it cannot deal with complex polyfills such as those required for Flexbox. In that sense, using Autoprefixer would be a far better option.
 
 
 
@@ -2339,73 +2051,73 @@ You probably already know that Sass provides conditional statements via the `@if
 
 Anyway, if you ever find yourself in need of them, please respect the following guidelines:
 
-* No parentheses unless they are necessary;
+* Use parentheses for readability;
 * Always a line break after the opening brace (`{`);
 * `@else` statements on the same line as previous closing brace (`}`).
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
-@if $support-legacy {
-  // ...
+@if ( $support-legacy ) {
+	// ...
 } @else {
-  // ...
+	// ...
 }
 
 // Nope
-@if ($support-legacy == true) {
-  // ...
+@if ( $support-legacy == true ) {
+	// ...
 }
 @else {
-  // ...
+	// ...
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 When testing for a falsy value, always use the `not` keyword rather than testing against `false` or `null`.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
-@if not index($list, $item) {
-  // ...
+@if ( not index( $list, $item ) ) {
+	// ...
 }
 
 // Nope
-@if index($list, $item) == null {
-  // ...
+@if ( index( $list, $item ) == null ) {
+	// ...
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 When using conditional statements within a function to return a different result based on some condition, always make sure the function still has a `@return` statement outside of any conditional block.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 // Yep
-@function dummy($condition) {
-  @if $condition {
-	@return true;
-  }
+@function dummy( $condition ) {
+	@if ( $condition ) {
+		@return true;
+	}
 
-  @return false;
+	@return false;
 }
 
 // Nope
-@function dummy($condition) {
-  @if $condition {
-	@return true;
-  } @else {
-	@return false;
-  }
+@function dummy( $condition ) {
+	@if ( $condition ) {
+		@return true;
+	} @else {
+		@return false;
+	}
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -2422,8 +2134,6 @@ When using conditional statements within a function to return a different result
 
 Because Sass provides complex data structures such as [lists](#lists) and [maps](#maps), it is no surprise that it also gives a way for authors to iterate over those entities.
 
-However, the presence of loops usually implies moderately complex logic that probably does not belong to Sass. Before using a loop, make sure it makes sense and that it actually solves an issue.
-
 
 
 
@@ -2434,29 +2144,29 @@ However, the presence of loops usually implies moderately complex logic that pro
 The `@each` loop is definitely the most-used out of the three loops provided by Sass. It provides a clean API to iterate over a list or a map.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 @each $theme in $themes {
-  .section-#{$theme} {
-	background-color: map-get($colors, $theme);
-  }
+	.section-#{$theme} {
+		background-color: map-get( $colors, $theme );
+	}
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 When iterating on a map, always use `$key` and `$value` as variable names to enforce consistency.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 @each $key, $value in $map {
-  .section-#{$key} {
-	background-color: $value;
-  }
+	.section-#{$key} {
+		background-color: $value;
+	}
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -2469,15 +2179,15 @@ When iterating on a map, always use `$key` and `$value` as variable names to enf
 The `@for` loop might be useful when combined with CSS' `:nth-*` pseudo-classes. Except for these scenarios, prefer an `@each` loop if you *have to* iterate over something.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 @for $i from 1 through 10 {
-  .foo:nth-of-type(#{$i}) {
-	border-color: hsl($i * 36, 50%, 50%);
-  }
+	.foo:nth-of-type( #{$i} ) {
+		border-color: hsl( $i * 36, 50%, 50% );
+	}
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 Always use `$i` as a variable name to stick to the usual convention and unless you have a really good reason to, never use the `to` keyword: always use `through`. Many developers do not even know Sass offers this variation; using it might lead to confusion.
@@ -2531,20 +2241,20 @@ Now, there is a lot of room in a Sass project for warnings and errors. Basically
 Take this function from [Sass-MQ](https://github.com/sass-mq/sass-mq) attempting to convert a `px` value to `em`, for instance:
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
-@function mq-px2em($px, $base-font-size: $mq-base-font-size) {
-  @if unitless($px) {
-	@warn 'Assuming #{$px} to be in pixels, attempting to convert it into pixels.';
-	@return mq-px2em($px + 0px);
-  } @else if unit($px) == em {
-	@return $px;
-  }
+@function mq-px2em( $px, $base-font-size: $mq-base-font-size ) {
+	@if unitless( $px ) {
+		@warn 'Assuming #{$px} to be in pixels, attempting to convert it into pixels.';
+		@return mq-px2em( $px * 1px);
+	} @else if unit( $px ) == em {
+		@return $px;
+	}
 
-  @return ($px / $base-font-size) * 1em;
+	@return ($px / $base-font-size) * 1em;
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 If the value happens to be unitless, the function assumes the value is meant to be expressed in pixels. At this point, an assumption may be risky so the user should be warned that the software did something that could be considered unexpected.
@@ -2561,7 +2271,7 @@ Errors, unlike warnings, prevent the compiler from going any further. Basically,
 As an example, let's say you build a getter function to access values from a specific map. You could throw an error if the requested key does not exist in the map.
 
 <div class="code-block">
-  <div class="code-block__wrapper" data-syntax="scss">
+	<div class="code-block__wrapper" data-syntax="scss">
 {% highlight scss %}
 /// Z-indexes map, gathering all Z layers of the application
 /// @access private
@@ -2569,10 +2279,10 @@ As an example, let's say you build a getter function to access values from a spe
 /// @prop {String} key - Layer's name
 /// @prop {Number} value - Z value mapped to the key
 $z-indexes: (
-  'modal': 5000,
-  'dropdown': 4000,
-  'default': 1,
-  'below': -1,
+	"modal": 5000,
+	"dropdown": 4000,
+	"default": 1,
+	"below": -1,
 );
 
 /// Get a z-index value from a layer name
@@ -2580,16 +2290,16 @@ $z-indexes: (
 /// @param {String} $layer - Layer's name
 /// @return {Number}
 /// @require $z-indexes
-@function z($layer) {
-  @if not map-has-key($z-indexes, $layer) {
-	@error 'There is no layer named `#{$layer}` in $z-indexes. '
-		 + 'Layer should be one of #{map-keys($z-indexes)}.';
-  }
+@function z( $layer ) {
+	@if ( not map-has-key( $z-indexes, $layer ) ) {
+		@error "There is no layer named `#{$layer}` in $z-indexes. "
+		 + "Layer should be one of #{map-keys( $z-indexes )}.";
+	}
 
-  @return map-get($z-indexes, $layer);
+	@return map-get( $z-indexes, $layer );
 }
 {% endhighlight %}
-  </div>
+	</div>
 </div>
 
 
@@ -2617,19 +2327,7 @@ However my advice would to be to lower the number of dependencies to the strict 
 
 [Compass](http://compass-style.org/) is the main Sass framework out there. Developed by [Chris Eppstein](https://twitter.com/chriseppstein), one of the two core designers of Sass, I don't see it dramatically losing in popularity for a while, if you want my opinion.
 
-Still, I do not use Compass anymore, the main reason is that it slows Sass down a lot. Ruby Sass is quite slow in itself, so adding more Ruby and more Sass on top of it doesn't really help.
-
-The thing is, we use very little from the whole framework. Compass is huge. Cross-browser compatibility mixins is just the tip of the iceberg. Math functions, image helpers, spriting... There is so much that can be done with this great piece of software.
-
-Unfortunately, this is all sugar and there is no killer feature in there. An exception could be made of the sprite builder which is *really great*, but [Grunticon](https://github.com/filamentgroup/grunticon) and [Grumpicon](http://grumpicon.com/) do the job as well, and have the benefit of being pluggable in the build process.
-
-Anyway, I do not forbid the use of Compass although I would not recommend it either, especially since it is not LibSass-compatible (even if efforts have been made in that direction). If you feel better using it, fair enough, but I don't think you'll get much from it at the end of the day.
-
-<div class="note">
-  <p>Ruby Sass is currently going under some outstanding optimizations that are specifically targeted at logic-heavy styles with many functions and mixins. They should dramatically improve performance to the point where Compass and other frameworks might not be slowing Sass anymore.</p>
-</div>
-
-
+Still, RP3 does not Compass anymore. All of the reasons we used to use Compass for (vendor prefixing, automatic sprite generation) can either be done more efficiently with other tools, or don't work very well in our applications.
 
 ### Further reading
 
@@ -2646,21 +2344,10 @@ Anyway, I do not forbid the use of Compass although I would not recommend it eit
 
 Not using a grid system is not an option now that Responsive Web Design is all over the place. To make designs look consistent and solid across all sizes, we use some sort of grid to lay out the elements. To avoid having to code this grid work over and over again, some brilliant minds made theirs reusable.
 
-Let me put this straight: I am not a big fan of grid systems. Of course I do see the potential, but I think most of them are completely overkill and are mostly used to draw red columns on a white background in nerdy designers' speaker decks. When is the last time you thought *thank-God-I-have-this-tool-to-build-this-2-5-3.1-π-grid*? That's right, never. Because in most cases, you just want the usual regular 12-columns grid, nothing fancy.
-
-If you are using a CSS framework for your project like [Bootstrap](http://getbootstrap.com/) or [Foundation](http://foundation.zurb.com/), chances are high it includes a grid system already in which case I would recommend to use it to avoid having to deal with yet another dependency.
-
-If you are not tied to a specific grid system, you will be pleased to know there are two top-notch Sass powered grid engines out there: [Susy](http://susy.oddbird.net/) and [Singularity](http://singularity.gs/). Both do much more than you will ever need so you can pick the one you prefer between these two and be sure all your edge cases&mdash;even the most nifty ones&mdash;will be covered. If you ask me, Susy has a slightly better community, but that's my opinion.
-
-Or you can head over to something a bit more casual, like [CSSWizardry Grids](https://github.com/csswizardry/csswizardry-grids). All in all, the choice will not have much of an impact on your coding style, so this is pretty much up to you at this point.
-
-
+RP3 currently uses [Susy](http://susy.oddbird.net/) for its primary grid framework. The advantages of Susy include not needing to include non-semantic "col" code in your markup, being able to define a custom grid for every project, and having a consistent API for creating grid systems across our projects. Additionally, although Susy uses floats and isolates for creating its grids, you can use its functions for determining column sizes and gutters to build flexbox layouts as well. Susy documentation also hints at flexbox being a natively-support option in the future.
 
 ### Further reading
 
-* [Singularity](http://singularity.gs/)
-* [Singularity: Grids Without Limits](http://fourword.fourkitchens.com/article/singularity-grids-without-limits)
-* [Singularity Grid System](http://www.mediacurrent.com/blog/singularity-grid-system)
 * [Susy](http://susy.oddbird.net/)
 * [Build Web Layouts Easily with Susy](http://css-tricks.com/build-web-layouts-easily-susy/)
 * [A Complete Tutorial to Susy 2](http://www.zell-weekeat.com/susy2-tutorial/)
@@ -2687,172 +2374,172 @@ Fortunately, SCSS-lint recommendations are very similar to those described in th
 
 linters:
 
-  BangFormat:
+	BangFormat:
 	enabled: true
 	space_before_bang: true
 	space_after_bang: false
 
-  BorderZero:
+	BorderZero:
 	enabled: true
 
-  ColorKeyword:
+	ColorKeyword:
 	enabled: false
 
-  Comment:
+	Comment:
 	enabled: false
 
-  DebugStatement:
+	DebugStatement:
 	enabled: true
 
-  DeclarationOrder:
+	DeclarationOrder:
 	enabled: true
 
-  DuplicateProperty:
+	DuplicateProperty:
 	enabled: false
 
-  ElsePlacement:
+	ElsePlacement:
 	enabled: true
 	style: same_line
 
-  EmptyLineBetweenBlocks:
+	EmptyLineBetweenBlocks:
 	enabled: true
 	ignore_single_line_blocks: false
 
-  EmptyRule:
+	EmptyRule:
 	enabled: true
 
-  FinalNewline:
+	FinalNewline:
 	enabled: true
 	present: true
 
-  HexLength:
+	HexLength:
 	enabled: true
 	style: short
 
-  HexNotation:
+	HexNotation:
 	enabled: true
 	style: lowercase
 
-  HexValidation:
+	HexValidation:
 	enabled: true
 
-  IdSelector:
+	IdSelector:
 	enabled: true
 
-  ImportPath:
+	ImportPath:
 	enabled: true
 	leading_underscore: false
 	filename_extension: false
 
-  Indentation:
+	Indentation:
 	enabled: true
 	character: space
 	width: 2
 
-  LeadingZero:
+	LeadingZero:
 	enabled: true
 	style: exclude_zero
 
-  MergeableSelector:
+	MergeableSelector:
 	enabled: false
 
-  NameFormat:
+	NameFormat:
 	enabled: true
 	convention: hyphenated_lowercase
 
-  NestingDepth:
+	NestingDepth:
 	enabled: true
 	max_depth: 3
 
-  PlaceholderInExtend:
+	PlaceholderInExtend:
 	enabled: true
 
-  PropertySortOrder:
+	PropertySortOrder:
 	enabled: false
 
-  PropertySpelling:
+	PropertySpelling:
 	enabled: true
 	extra_properties: []
 
-  QualifyingElement:
+	QualifyingElement:
 	enabled: true
 	allow_element_with_attribute: false
 	allow_element_with_class: false
 	allow_element_with_id: false
 
-  SelectorDepth:
+	SelectorDepth:
 	enabled: true
 	max_depth: 3
 
-  SelectorFormat:
+	SelectorFormat:
 	enabled: true
 	convention: hyphenated_lowercase
 	class_convention: '^(?:u|is|has)\-[a-z][a-zA-Z0-9]*$|^(?!u|is|has)[a-zA-Z][a-zA-Z0-9]*(?:\-[a-z][a-zA-Z0-9]*)?(?:\-\-[a-z][a-zA-Z0-9]*)?$'
 
-  Shorthand:
+	Shorthand:
 	enabled: true
 
-  SingleLinePerProperty:
+	SingleLinePerProperty:
 	enabled: true
 	allow_single_line_rule_sets: false
 
-  SingleLinePerSelector:
+	SingleLinePerSelector:
 	enabled: true
 
-  SpaceAfterComma:
+	SpaceAfterComma:
 	enabled: true
 
-  SpaceAfterPropertyColon:
+	SpaceAfterPropertyColon:
 	enabled: true
 	style: one_space
 
-  SpaceAfterPropertyName:
+	SpaceAfterPropertyName:
 	enabled: true
 
-  SpaceBeforeBrace:
+	SpaceBeforeBrace:
 	enabled: true
 	style: space
 	allow_single_line_padding: true
 
-  SpaceBetweenParens:
+	SpaceBetweenParens:
 	enabled: true
 	spaces: 0
 
-  StringQuotes:
+	StringQuotes:
 	enabled: true
 	style: single_quotes
 
-  TrailingSemicolon:
+	TrailingSemicolon:
 	enabled: true
 
-  TrailingZero:
+	TrailingZero:
 	enabled: true
 
-  UnnecessaryMantissa:
+	UnnecessaryMantissa:
 	enabled: true
 
-  UnnecessaryParentReference:
+	UnnecessaryParentReference:
 	enabled: true
 
-  UrlFormat:
+	UrlFormat:
 	enabled: false
 
-  UrlQuotes:
+	UrlQuotes:
 	enabled: true
 
-  VendorPrefixes:
+	VendorPrefixes:
 	enabled: true
 	identifier_list: base
 	include: []
 	exclude: []
 
-  ZeroUnit:
+	ZeroUnit:
 	enabled: true
 {% endhighlight %}
 
 <div class="note">
-  <p>If you want to plug SCSS lint into your Grunt build process, you will be pleased to know there is a Grunt plugin for that called <a href="https://github.com/ahmednuaman/grunt-scss-lint">grunt-scss-lint</a>.</p>
-  <p>Also, if you are on the hunt for a neat application that works with SCSS-lint and the like, the guys at <a href="http://thoughtbot.com/">Thoughtbot</a> (Bourbon, Neat...) are working on <a href="https://houndci.com/">Hound</a>.</p>
+	<p>If you want to plug SCSS lint into your gulp build process, you will be pleased to know there is a gulp plugin for that called <a href="https://www.npmjs.com/package/gulp-scss-lint">gulp-scss-lint</a>.</p>
+	<p>Also, if you are on the hunt for a neat application that works with SCSS-lint and the like, the guys at <a href="http://thoughtbot.com/">Thoughtbot</a> (Bourbon, Neat...) are working on <a href="https://houndci.com/">Hound</a>.</p>
 </div>
 
 
@@ -2862,7 +2549,6 @@ linters:
 * [SCSS-lint](https://github.com/causes/scss-lint)
 * [Clean Up your Sass with SCSS-lint](http://blog.martinhujer.cz/clean-up-your-sass-with-scss-lint/)
 * [Improving Sass code quality on theguardian.com](http://www.theguardian.com/info/developer-blog/2014/may/13/improving-sass-code-quality-on-theguardiancom)
-* [grunt-scss-lint](https://github.com/ahmednuaman/grunt-scss-lint)
 * [An Auto-Enforceable SCSS Styleguide](http://davidtheclark.com/scss-lint-styleguide/)
 
 
@@ -2877,19 +2563,18 @@ linters:
 
 To sum up, we want:
 
-* Two (2) spaces indents, no tabs;
+* Tab indents, set to 4 spaces;
 * 80-characters wide lines;
 * Properly written multi-line CSS;
 * Meaningful use of whitespaces;
-* Quoted strings (single quotes) & URLs;
+* Quoted strings (double quotes) & URLs;
 * No trailing 0, mandatory leading 0;
 * Calculations wrapped in parentheses;
 * No magic numbers;
-* Colors expressed in keywords > HSL > RGB > hexadecimal;
+* Colors expressed in hexadecimal > RGB > HSL > keywords;
 * Lists separated with commas;
 * No trailing comma in lists (since they are inlined);
-* Trailing comma in maps;
-* No selector nesting except for pseudo-classes and pseudo-elements;
+* Limit selector nesting where possible;
 * Hyphen-delimited naming;
 * Extensive comments;
 * SassDoc-powered API comments;
@@ -2899,4 +2584,3 @@ To sum up, we want:
 * Reduced number of dependencies;
 * Meaningful use of warnings and errors.
 
-{% include donate.html %}
