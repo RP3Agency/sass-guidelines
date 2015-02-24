@@ -1,0 +1,89 @@
+/// Vertical rhythm baseline
+/// @type Length
+$vertical-rhythm-baseline: 1.5rem;
+
+/// Regular font stack
+/// @type List
+$text-font-stack: "Open Sans", "Helvetica", "Arial", sans-serif;
+
+/// Code font stack
+/// @type List
+$code-font-stack: "Source Code Pro", "Courier New", monospace;
+
+/// Light grey
+/// @type Color
+$light-grey: #dadbdf;
+
+/// Dark grey
+/// @type Color
+$dark-grey: #444;
+
+/// Light pink
+/// @type Color
+$light-pink: #c69;
+
+/// Dark pink
+/// @type Color
+$dark-pink: #b37399;
+
+/// Light yellow
+/// @type Color
+$light-yellow: #f2ece4;
+
+/// Light green
+/// @type Color
+$light-green: #d2e1dd;
+
+/// Light blue
+/// @type Color
+$light-blue: #00bbe3;
+
+/// Dark blue
+/// @type Color
+$dark-blue: mix(#000, #00bbe3, 20%);
+
+/// Main color
+/// @type Color
+/// @require $light-blue
+$main-color: $light-blue;
+
+/// Secondary color
+/// @type Color
+/// @require $dark-blue
+$secondary-color: $dark-blue;
+
+/// Tertiary color
+/// @type Color
+/// @require $light-pink
+$tertiary-color: $light-pink;
+
+/// Note background
+/// @type Color
+/// @require $light-grey
+$note-background: $light-grey;
+
+/// Quote background
+/// @type Color
+/// @require $light-green
+$quote-background: $light-green;
+
+/// Code background
+/// @type Color
+/// @require $dark-grey
+$code-background: $dark-grey;
+
+/// Donate background
+/// @type Color
+/// @require $light-yellow
+$donate-background: $light-yellow;
+
+/// Figure background
+/// @type Color
+/// @require $light-yellow
+$figure-background: $light-grey;
+
+/// Breakpoints
+/// @type Map
+$breakpoints: (
+  'medium': 801px
+);

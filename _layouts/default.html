@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include head.html %}
+
+  <body id="top">
+
+    {% include header.html %}
+
+    <input type="checkbox" id="syntax-toggle" class="visually-hidden" />
+
+    {{ content }}
+
+    <a href="#top" class="button-ui  button-ui--back">Top</a>
+
+    {% include footer.html %}
+
+    {% include scripts.html %}
+
+  </body>
+
+</html>

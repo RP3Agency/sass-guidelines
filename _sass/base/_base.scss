@@ -1,0 +1,29 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font: 1.125em/1.4 $text-font-stack;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: $main-color;
+  font-weight: 700;
+  transition: .15s;
+
+  @include on-event {
+    color: $tertiary-color;
+  }
+}
+
+:not(pre) > code {
+  color: #6b717f;
+}

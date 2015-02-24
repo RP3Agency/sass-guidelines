@@ -1,0 +1,32 @@
+/**
+ * Quotes
+ */
+blockquote {
+  margin: 0;
+  @include vertical-rhythm;
+  background: $quote-background;
+  padding: 1em;
+  overflow: hidden;
+  font-style: italic;
+
+  > * {
+    @include container;
+  }
+
+  @include respond-to("medium") {
+    > :first-child {
+      position: relative;
+
+      &::before {
+        font-style: normal;
+        content: "“";
+        font-family: "Georgia", serif;
+        position: absolute;
+        font-size: 20em;
+        right: 100%;
+        top: -.3875em;
+        color: rgba(black, .05);
+      }
+    }
+  }
+}

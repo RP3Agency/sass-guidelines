@@ -1,0 +1,21 @@
+/**
+ * Notes
+ */
+.note {
+  @include vertical-rhythm;
+  background: $note-background;
+  padding: 2em;
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  > p:first-child::before {
+    content: "Note — ";
+    font-weight: 700;
+  }
+}

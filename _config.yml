@@ -1,0 +1,10 @@
+# Site settings
+title: Sass Guidelines
+description: "an opinionated styleguide for writing sane, maintainable and scalable Sass at RP3"
+baseurl: "/sass-guidelines"
+url: "http://rp3agency.github.io/sass-guidelines"
+twitter_username: rp3agency
+github_username:  RP3Agency
+
+# Build settings
+markdown: kramdown
